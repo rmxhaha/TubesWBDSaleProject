@@ -1,0 +1,10 @@
+div {
+    width: 300px;
+    border: 25px;
+    padding: 25px;
+    margin: auto;
+    bottom-top-color: black;
+}
+.submit-button{
+	text-align: right;
+}
