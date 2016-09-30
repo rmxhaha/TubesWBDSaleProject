@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>MarketPlace</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	
+<div>
+  <form action="../server/register.php" method="post">
+  <h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
+	<h2>Please Register</h2>
+	<hr>
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" name="fullname">
+    <span class="error">* <?php echo $nameErr;?></span>
+    <label for="uname">Username</label>
+    <input type="text" id="uname" name="username">
+    <span class="error">* <?php echo $usernameError;?></span>
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email">
+    <span class="error">* <?php echo $emailErr;?></span>
+
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password">
+
+    <label for="confpass">Confirm Password</label>
+    <input type="text" id="confpass" name="confirmpassword">
+    <span class="error">* <?php echo $passError;?></span>
+
+    <label for="faddr">Full Address</label>
+    <input type="text" id="faddr" name="fulladdress">
+
+    <label for="postcode">Postal Code</label>
+    <input type="text" id="postcode" name="postcode">
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone">
+
+    <input type="submit" value="Register">
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>Already registered? Login <a href="login.html">here</a></p>
+  </form>
+</div>
+
+</body>
+</html>
