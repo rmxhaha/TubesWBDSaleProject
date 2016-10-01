@@ -13,31 +13,35 @@
 	<h2>Please Register</h2>
 	<hr>
     <label for="fullname">Full Name</label>
-    <input type="text" id="fullname" name="fullname">
-    <span class="error">* <?=$this->nameErr;?></span>
-    <label for="uname">Username</label>
-    <input type="text" id="uname" name="username">
-    <span class="error">* <?=$this->usernameError;?></span>
+    <input type="text" id="fullname" name="fullname" value="<?=$this->name?>">
+    <span for="fullname" class="error"><?=$this->nameErr;?></span>
+    
+    <label for="username">Username</label>
+    <input type="text" id="uname" name="username" value="<?=$this->username?>">
+    <span for="username" class="error"><?=$this->usernameError;?></span>
 
     <label for="email">Email</label>
-    <input type="text" id="email" name="email">
-    <span class="error">* <?=$this->emailErr;?></span>
+    <input type="text" id="email" name="email" value="<?=$this->email?>">
+    <span for="email" class="error"><?=$this->emailError;?></span>
 
     <label for="password">Password</label>
-    <input type="text" id="password" name="password">
+    <input for="password" type="password" id="password" name="password">
 
     <label for="confpass">Confirm Password</label>
-    <input type="text" id="confpass" name="confirmpassword">
-    <span class="error">* <?=$this->passError;?></span>
+    <input type="password" id="confpass" name="confirmpassword">
+    <span for="confpass" class="error"><?=$this->passwordError;?></span>
 
-    <label for="faddr">Full Address</label>
-    <input type="text" id="faddr" name="fulladdress">
+    <label for="fulladdress">Full Address</label>
+    <input type="text" id="faddr" name="fulladdress" value="<?=$this->address?>">
+    <span for="fulladdress" class="error"><?=$this->addressError;?></span>
 
     <label for="postcode">Postal Code</label>
-    <input type="text" id="postcode" name="postcode">
+    <input type="text" id="postcode" name="postcode"  value="<?=$this->postcode?>">
+    <span for="postcode" class="error"><?=$this->postcodeError;?></span>
 
     <label for="phone">Phone Number</label>
-    <input type="text" id="phone" name="phone">
+    <input type="text" id="phone" name="phone" value="<?=$this->phone?>">
+    <span for="phone" class="error"><?=$this->phoneError;?></span>
 
     <input type="submit" value="Register">
     <br>
