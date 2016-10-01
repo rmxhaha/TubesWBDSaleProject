@@ -106,14 +106,17 @@ class AccountController extends Base{
 		$this->init_db();
 		
 		//SQL execute
-		if( !$emailErr && !$usernameErr ){
-			$query= "SELECT COUNT(*) FROM user WHERE email=$email";
+		if( empty($emailErr) ){
+			$query= "SELECT COUNT(*) FROM user WHERE email='$email'";
 			if( $result = $this->db->query($query) ){
 				$row = $result->fetch_array(MYSQLI_NUM);
 				if($row[0]==1)
 					$emailErr = "Email has already been used";
 			}
-			$query= "SELECT COUNT(*) FROM user WHERE username=$username";
+		}
+
+		if( empty($usernameErr) ){
+			$query= "SELECT COUNT(*) FROM user WHERE username='$username'";
 			if( $result = $this->db->query($query) ){
 				$row = $result->fetch_array(MYSQLI_NUM);
 				if($row[0]==1)
@@ -121,11 +124,15 @@ class AccountController extends Base{
 			}
 		}
 		
-		$this->db->close();
 		
 		if( empty($nameErr) && empty($usernameErr) && empty($emailErr) && empty($passError) && empty($postcodeError) && empty($phoneError)){
-			// TODO: insert to db
-			$this->redirect("/login.php");
+			$query = "
+				INSERT INTO user (`fullname`,`username`,`email`,`password`,`address`,`postalcode`,`phonenumber`) 
+				VALUES ('$fullname','$username','$email','$password','$fulladdress','$postcode','$phone')
+			";
+			if( $result = $this->db->query($query) ){
+				$this->redirect("login.php");
+			}
 		}
 		else {
 			$this->register_form_init();
@@ -145,6 +152,9 @@ class AccountController extends Base{
 			
 			$this->view->render("register.html");
 		}
+		
+		$this->db->close();
+
 	}
 }
 
