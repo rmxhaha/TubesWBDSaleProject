@@ -9,19 +9,27 @@ class AccountController extends Base{
 	function login_form(){
 		$this->view->render("login.html");
 	}
-		
-	function login($username, $password){
+	
+	function header(){
+		$this->render_header("Yes","random","catalog");
+	}
+	
+	function login(){
 		$this->init_db();
+		$username = $_POST["username"];
+		$password = $_POST["password"];		
 		$username = $this->db->real_escape_string($username);
 		$password = $this->db->real_escape_string($password);
 		
-		if( $result = $this->db->query("SELECT user_id FROM account WHERE username=$username AND password=$password") ){
+		$query = "SELECT id FROM user WHERE (username='$username' OR email='$username') AND password='$password';";
+		
+		if( $result = $this->db->query($query) ){
 			if( $result->num_rows == 1 ){
 				$row = $result->fetch_object();
-				$this->redirect("./home/?user_id=$row[user_id]");
+				$this->redirect("/home.php?user_id=$row[id]");
 			}
 			else {
-				$this->redirect("./login/");
+				$this->redirect("/login.php");
 			}
 			$result->close();
 		}
