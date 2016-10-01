@@ -29,7 +29,7 @@ class Base {
 		if( $mysqli->connect_errno ){
 			throw new Exception("Cannot connect to database");
 		}
-		$this->db = $mysql;
+		$this->db = $mysqli;
 	}
 	
 	function redirect($url){
