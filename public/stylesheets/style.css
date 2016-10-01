@@ -14,7 +14,7 @@
 	color: blue;
 	text-align: center;
 }
-input[type=text], select {
+input[type=password], input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
