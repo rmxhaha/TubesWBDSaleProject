@@ -3,7 +3,25 @@ require "Template.php";
 
 class Base {
 	function __construct(){
-		$this->view = new Template();
+		$view = new Template();
+		$this->view = $view;
+	}
+	
+	function render_header($username, $title,$highlight){
+		$view = new Template();
+
+		$view->header_catalog_class = "";
+		$view->header_your_product_class = "";
+		$view->header_add_product_class = "";
+		$view->header_sales_class = "";
+		$view->header_purchases_class = "";
+
+		$view->user = array( "name" => $username );
+		$view->title = $title;
+		
+		$view->__set("header_".$highlight."_class","header_highlight");
+		
+		$view->render("header.php");
 	}
 	
 	function init_db(){
