@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `item` (
+CREATE TABLE `product` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `name` varchar(20) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `purchase` (
   `threedigit` int(3) NOT NULL,
   `quantity` int(11) NOT NULL,
   `id_pembeli` int(11) NOT NULL,
-  `id_item` int(11) NOT NULL
+  `id_product` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -79,13 +79,10 @@ CREATE TABLE `user` (
 --
 
 --
--- Indexes for table `item`
+-- Indexes for table `product`
 --
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `id_3` (`id`),
-  ADD KEY `id_2` (`id`);
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `purchase`
@@ -98,20 +95,17 @@ ALTER TABLE `purchase`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `id_3` (`id`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `id_2` (`id`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `item`
+-- AUTO_INCREMENT for table `product`
 --
-ALTER TABLE `item`
+ALTER TABLE `product`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
