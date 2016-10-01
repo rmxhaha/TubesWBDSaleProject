@@ -26,7 +26,7 @@ class AccountController extends Base{
 		if( $result = $this->db->query($query) ){
 			if( $result->num_rows == 1 ){
 				$row = $result->fetch_object();
-				$this->redirect("/home.php?user_id=$row[id]");
+				$this->redirect("/home.php?user_id=".$row->id);
 			}
 			else {
 				$this->redirect("/login.php");
