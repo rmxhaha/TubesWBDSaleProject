@@ -10,10 +10,6 @@ class AccountController extends Base{
 		$this->view->render("login.html");
 	}
 	
-	function header(){
-		$this->render_header("Yes","random","catalog");
-	}
-	
 	function login(){
 		$this->init_db();
 		$username = $_POST["username"];
