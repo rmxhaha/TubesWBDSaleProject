@@ -7,14 +7,13 @@
 
 	<table class="table-header-option">
 		<tr>
-			<td>Catalog</td>
-			<td>Your Products</td>
-			<td>Add Product</td>
-			<td>Sales</td>
-			<td>Purchases</td>
+			<td class="<?=$this->header_catalog_class?>">Catalog</td>
+			<td class="<?=$this->header_your_product_class?>">Your Products</td>
+			<td class="<?=$this->header_add_product_class?>">Add Product</td>
+			<td class="<?=$this->header_sales_class?>">Sales</td>
+			<td class="<?=$this->header_purchases_class?>">Purchases</td>
 		</tr>
 	</table>
-
 	<h2><?=$this->title?></h2>
 	<hr>
 </div>
