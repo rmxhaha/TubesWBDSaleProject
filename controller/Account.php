@@ -34,6 +34,19 @@ class AccountController extends Base{
 			$result->close();
 		}
 	}
+	
+	function register_form(){
+		$this->view->nameErr = "";
+		$this->view->usernameError = "";
+		$this->view->passError = "";
+		$this->view->emailErr = "";
+		
+		$this->view->render("register.html");
+	}
+	
+	function register(){
+		
+	}
 }
 
 ?>
