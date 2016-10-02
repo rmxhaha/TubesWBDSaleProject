@@ -22,6 +22,10 @@ class ProductController extends Base{
 		
 	}
 	
+	function delete_product(){
+		
+	}
+	
 	function edit_product_form(){
 		
 	}
