@@ -1,5 +1,5 @@
 <div class="header-container">
-	<h1>SaleProject</h1>
+	<h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
 
 	Hi, <?=$this->user["name"]?><br>
 	<a href="<?=$this->header_logout_link?>">logout</a>
