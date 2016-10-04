@@ -6,7 +6,7 @@ class Base {
 		$view = new Template();
 		$this->view = $view;
 	}
-	
+
 	function render_header($username, $title,$highlight){
 		$view = new Template();
 
@@ -18,12 +18,12 @@ class Base {
 
 		$view->user = array( "name" => $username );
 		$view->title = $title;
-		
+
 		$view->__set("header_".$highlight."_class","header_highlight");
-		
-		$view->render("header.php");
+
+		return $view->render_return("header.php");
 	}
-	
+
 	function init_db(){
 		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		if( $mysqli->connect_errno ){
@@ -31,7 +31,7 @@ class Base {
 		}
 		$this->db = $mysqli;
 	}
-	
+
 	function redirect($url){
 		header("Location: $url");
 	}
