@@ -1,8 +1,9 @@
 <?php
 error_reporting(E_ALL);
-require "controller/Account.php";
+require "controller/Base.php";
 
 
-$account = new AccountController();
-$account->login_form();
+$base = new Base();
+$base->redirect("./login.php");
+
 ?>
