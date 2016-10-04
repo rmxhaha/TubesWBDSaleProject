@@ -2,16 +2,26 @@
 	<h1>SaleProject</h1>
 
 	Hi, <?=$this->user["name"]?><br>
-	<a href="#">logout</a>
+	<a href="<?=$this->header_logout_link?>">logout</a>
 
 
 	<table class="table-header-option">
 		<tr>
-			<td class="<?=$this->header_catalog_class?>">Catalog</td>
-			<td class="<?=$this->header_your_product_class?>">Your Products</td>
-			<td class="<?=$this->header_add_product_class?>">Add Product</td>
-			<td class="<?=$this->header_sales_class?>">Sales</td>
-			<td class="<?=$this->header_purchases_class?>">Purchases</td>
+			<td class="<?=$this->header_catalog_class?>">
+				<a href="<?=$this->header_catalog_link?>">Catalog</a>
+			</td>
+			<td class="<?=$this->header_your_product_class?>">
+				<a href="<?=$this->header_your_product_link?>">Your Products</a>
+			</td>
+			<td class="<?=$this->header_add_product_class?>">
+				<a href="<?=$this->header_add_product_link?>">Add Product</a>
+			</td>
+			<td class="<?=$this->header_sales_class?>">
+				<a href="<?=$this->header_sales_link?>">Sales</a>
+			</td>
+			<td class="<?=$this->header_purchases_class?>">
+				<a href="<?=$this->header_purchases_link?>">Purchases</a>
+			</td>
 		</tr>
 	</table>
 	<h2><?=$this->title?></h2>

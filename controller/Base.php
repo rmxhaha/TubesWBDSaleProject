@@ -7,7 +7,7 @@ class Base {
 		$this->view = $view;
 	}
 
-	function render_header($username, $title,$highlight){
+	function render_header($user, $title,$highlight){
 		$view = new Template();
 
 		$view->header_catalog_class = "";
@@ -16,7 +16,14 @@ class Base {
 		$view->header_sales_class = "";
 		$view->header_purchases_class = "";
 
-		$view->user = array( "name" => $username );
+		$view->header_catalog_link = "./catalog.php?user_id=$user->id";
+		$view->header_your_product_link = "./myshop.php?action=browse&user_id=$user->id";
+		$view->header_add_product_link = "./myshop.php?action=add_product&user_id=$user->id";
+		$view->header_sales_link = "./sales.php?user_id=$user->id";
+		$view->header_purchases_link = "./purchases.php?user_id=$user->id";
+		$view->header_logout_link = "./logout.php";
+
+		$view->user = array( "name" => $user->fullname );
 		$view->title = $title;
 
 		$view->__set("header_".$highlight."_class","header_highlight");
