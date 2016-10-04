@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>MarketPlace</title>
+	<link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
+</head>
+<body>
+
+<div class="container">
+	<?=$this->header?>
+
+  <form action="./register.php" method="POST">
+    <label for="product_name">Name</label>
+    <input type="text" id="product_name" name="product_name" value="<?=$this->product_name?>">
+
+		<label for="product_description">Description (max 200 chars)</label>
+    <textarea name="product_description"><?=$this->product_description?></textarea>
+
+
+    <label for="product_price">Price</label>
+    <input type="text" id="product_price" name="product_price" value="<?=$this->product_price?>">
+
+		<label for="product_photo">Photo</label>
+		<input type="file" name="product_photo" accept="image/*">
+		<div class="error-container">
+			<span class="error"></span>
+		</div>
+
+    <input type="submit" value="ADD">
+		<button onclick="window.history.go(-1)">CANCEL</button>
+  </form>
+</div>
+
+</body>
+</html>

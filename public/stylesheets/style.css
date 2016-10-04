@@ -14,7 +14,7 @@
 	color: blue;
 	text-align: center;
 }
-input[type=password], input[type=text], select, textarea {
+input[type=password], input[type=text], input[type=file], select, textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -24,7 +24,7 @@ input[type=password], input[type=text], select, textarea {
     box-sizing: border-box;
 }
 
-input[type=submit] {
+input[type=submit], button {
     width: 50%;
     background-color: #4CAF50;
     color: white;
