@@ -4,6 +4,7 @@ require "controller/Base.php";
 class CatalogController extends Base{
 	function __construct(){
 		Base::__construct();
+		$this->init_user();
 	}
 
 	function render_catalog_product($option){
@@ -15,15 +16,8 @@ class CatalogController extends Base{
 	}
 
 	function catalog(){
-		$user_id = $_GET['user_id'];
-		if( empty($user_id) )
-			return $this->redirect("./");
-
-		$this->init_db();
-		$user_data = $this->get_user_data($user_id);
-
 		$products = "";
-		$this->view->header = $this->render_header($user_data,"What are you going to buy today?","catalog");
+		$this->view->header = $this->render_header("What are you going to buy today?","catalog");
 		$this->view->products = $this->render_catalog_product(array(
 			"seller_name" => "sample_seller",
 			"create_date" => "30 February 2016",

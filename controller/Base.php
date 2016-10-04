@@ -7,7 +7,8 @@ class Base {
 		$this->view = $view;
 	}
 
-	function render_header($user, $title,$highlight){
+	function render_header($title,$highlight){
+		$user = $this->user;
 		$view = new Template();
 
 		$view->header_catalog_class = "";
@@ -32,6 +33,9 @@ class Base {
 	}
 
 	function init_db(){
+		if( isset($this->db) )
+			return;
+
 		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		if( $mysqli->connect_errno ){
 			throw new Exception("Cannot connect to database");
@@ -52,6 +56,17 @@ class Base {
 			}
 			$result->close();
 		}
+	}
+
+	function init_user(){
+		$user_id = $_GET['user_id'];
+		if( empty($user_id) )
+			return $this->redirect("./");
+
+		$user_id = $_GET['user_id'];
+		$this->init_db();
+
+		$this->user = $this->get_user_data($user_id);
 	}
 
 	function redirect($url){

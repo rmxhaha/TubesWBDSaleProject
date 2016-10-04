@@ -4,6 +4,7 @@ require "controller/Base.php";
 class ShopController extends Base{
 	function __construct(){
 		Base::__construct();
+		$this->init_user();
 	}
 
 	function render_shop_product($option){
@@ -15,12 +16,7 @@ class ShopController extends Base{
 	}
 
 	function your_products_page(){
-		$user_id = $_GET['user_id'];
-
-		$this->init_db();
-		$user_data = $this->get_user_data($user_id);
-
-		$this->view->header = $this->render_header($user_data,"What are you going to sell today?","your_product");
+		$this->view->header = $this->render_header("What are you going to sell today?","your_product");
 		$this->view->products = $this->render_shop_product(array(
 			"create_date" => "30 February 2016",
 			"product_image" => "./public/images/sample.png",
