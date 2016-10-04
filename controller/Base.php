@@ -20,7 +20,7 @@ class Base {
 		$view->header_catalog_link = "./home.php?user_id=$user->id";
 		$view->header_your_product_link = "./shop.php?action=browse&user_id=$user->id";
 		$view->header_add_product_link = "./shop.php?action=add_product&user_id=$user->id";
-		$view->header_sales_link = "./shop.php?action=salse&user_id=$user->id";
+		$view->header_sales_link = "./shop.php?action=sales&user_id=$user->id";
 		$view->header_purchases_link = "./purchases.php?user_id=$user->id";
 		$view->header_logout_link = "./logout.php";
 
