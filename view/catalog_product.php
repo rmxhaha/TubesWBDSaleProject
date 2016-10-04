@@ -11,8 +11,8 @@
       <?=$this->product_description?>
     </td>
     <td>
-      <div class="like_count"><?=$this->like_count?></div>
-      <div class="purchase_count"><?=$this->purchase_count?></div>
+      <div class="like_count"><?=$this->like_count?> Likes </div>
+      <div class="purchase_count"><?=$this->purchase_count?> Purchases </div>
       <a href="#">LIKE</a>
       <a href="#">BUY</a>
     </td>
