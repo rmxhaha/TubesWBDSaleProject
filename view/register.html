@@ -3,19 +3,19 @@
 <html>
 <head>
 	<title>MarketPlace</title>
-	<link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
 </head>
 <body>
-	
+
 <div class="container">
-  <form action="/register.php" method="POST">
+  <form action="./register.php" method="POST">
   <h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
 	<h2>Please Register</h2>
 	<hr>
     <label for="fullname">Full Name</label>
     <input type="text" id="fullname" name="fullname" value="<?=$this->name?>">
     <span for="fullname" class="error"><?=$this->nameErr;?></span>
-    
+
     <label for="username">Username</label>
     <input type="text" id="uname" name="username" value="<?=$this->username?>">
     <span for="username" class="error"><?=$this->usernameError;?></span>
@@ -48,7 +48,7 @@
     <br>
     <br>
     <br>
-    <p>Already registered? Login <a href="login.html">here</a></p>
+    <p>Already registered? Login <a href="login.php">here</a></p>
   </form>
 </div>
 
