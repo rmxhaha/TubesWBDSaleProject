@@ -10,7 +10,7 @@
 <div class="container">
 	<?=$this->header?>
 
-  <form action="./register.php" method="POST">
+  <form action="<?=$this->add_product_action?>" method="POST" enctype="multipart/form-data">
     <label for="product_name">Name</label>
     <input type="text" id="product_name" name="product_name" value="<?=$this->product_name?>">
 

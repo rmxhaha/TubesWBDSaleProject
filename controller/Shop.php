@@ -38,6 +38,7 @@ class ShopController extends Base{
 		$this->view->product_price = "";
 		$this->view->product_name = "";
 		$this->view->product_description = "";
+		$this->view->add_product_action = "./shop.php?action=add_product&user_id=".$this->user->id;
 	}
 
 	function add_product_form(){
@@ -47,6 +48,33 @@ class ShopController extends Base{
 	}
 
 	function add_product(){
+		$imageFileType = pathinfo(basename($_FILES["product_photo"]["name"]),PATHINFO_EXTENSION);
+		$errors = array();
+
+		$uploadOk = 1;
+		$target_file = IMAGE_UPLOAD_DIR . $this->user->username.".$imageFileType";
+		$check = getimagesize($_FILES["product_photo"]["tmp_name"]);
+		if($check === false) {
+			array_push($errors,"File is not an image.");
+    }
+
+		if (file_exists($target_file)) {
+			unlink($target_file);
+		}
+
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+		    array_push($errors, "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+		}
+
+		if( count($errors) == 0 ){
+			if (move_uploaded_file($_FILES["product_photo"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["product_photo"]["name"]). " has been uploaded.";
+	    } else {
+        echo "Sorry, there was an error uploading your file.";
+	    }
+		}
+
 
 	}
 

@@ -6,8 +6,14 @@ if( $_GET['action'] == "browse" ){
   $shop->your_products_page();
 }
 else if( $_GET['action'] == "add_product" ){
-  $shop = new ShopController();
-  $shop->add_product_form();
+  if( $_SERVER['REQUEST_METHOD'] == "GET" ){
+    $shop = new ShopController();
+    $shop->add_product_form();
+  }
+  else if( $_SERVER['REQUEST_METHOD'] == "POST" ){
+    $shop = new ShopController();
+    $shop->add_product();
+  }
 }
 
 ?>
