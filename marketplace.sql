@@ -32,7 +32,7 @@ CREATE TABLE `product` (
   `name` varchar(20) NOT NULL,
   `description` text NOT NULL,
   `price` int(11) NOT NULL,
-  `photo` blob NOT NULL,
+  `photo` VARCHAR( 1024 ) NOT NULL NOT NULL,
   `stock` int(11) NOT NULL,
   `purchase` int(11) NOT NULL,
   `like` int(11) NOT NULL
