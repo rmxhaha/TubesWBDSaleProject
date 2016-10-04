@@ -6,21 +6,6 @@ class CatalogController extends Base{
 		Base::__construct();
 	}
 
-	function get_user_data($user_id){
-		$query = "SELECT * FROM user WHERE id='$user_id';";
-
-		if( $result = $this->db->query($query) ){
-			if( $result->num_rows == 1 ){
-				$row = $result->fetch_object();
-				return $row;
-			}
-			else {
-				return false;
-			}
-			$result->close();
-		}
-	}
-
 	function render_catalog_product($option){
 		$view = new Template();
 		foreach($option as $key=>$value){

@@ -17,8 +17,8 @@ class Base {
 		$view->header_purchases_class = "";
 
 		$view->header_catalog_link = "./catalog.php?user_id=$user->id";
-		$view->header_your_product_link = "./myshop.php?action=browse&user_id=$user->id";
-		$view->header_add_product_link = "./myshop.php?action=add_product&user_id=$user->id";
+		$view->header_your_product_link = "./shop.php?action=browse&user_id=$user->id";
+		$view->header_add_product_link = "./shop.php?action=add_product&user_id=$user->id";
 		$view->header_sales_link = "./sales.php?user_id=$user->id";
 		$view->header_purchases_link = "./purchases.php?user_id=$user->id";
 		$view->header_logout_link = "./logout.php";
@@ -37,6 +37,21 @@ class Base {
 			throw new Exception("Cannot connect to database");
 		}
 		$this->db = $mysqli;
+	}
+
+	function get_user_data($user_id){
+		$query = "SELECT * FROM user WHERE id='$user_id';";
+
+		if( $result = $this->db->query($query) ){
+			if( $result->num_rows == 1 ){
+				$row = $result->fetch_object();
+				return $row;
+			}
+			else {
+				return false;
+			}
+			$result->close();
+		}
 	}
 
 	function redirect($url){
