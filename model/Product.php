@@ -57,12 +57,21 @@ class Product extends Model{
   }
 
   function render($for = "shop"){
+    function money_f($p){
+      $remainder = intval($p / 1000);
+      if( $remainder == 0 ){
+        return "IDR $p";
+      }
+      else
+        return money_f( $remainder ).",".( intval($p % 1000) );
+
+    }
     $option = array(
 			"create_date" => "30 February 2016",
 			"product_image" => $this->data->photo,
 			"product_name" => $this->data->name,
 			"product_description" => $this->data->description,
-			"product_price" => $this->data->price,
+			"product_price" => money_f( $this->data->price ),
 			"like_count" => "7",
 			"purchase_count" => "3",
       "seller_name" => $this->seller->data->fullname
