@@ -9,6 +9,7 @@ class Product extends Model{
   static function with_id($product_id){
     $instance = new self();
     $instance->init_by_id($product_id);
+    $instance->seller = User::with_id($instance->data->seller_id);
 
     return $instance;
   }
@@ -16,6 +17,7 @@ class Product extends Model{
   static function with_row($row){
     $instance = new self();
     $instance->data = $row;
+    $instance->seller = User::with_id($row->seller_id);
 
     return $instance;
   }
@@ -62,7 +64,8 @@ class Product extends Model{
 			"product_description" => $this->data->description,
 			"product_price" => $this->data->price,
 			"like_count" => "7",
-			"purchase_count" => "3"
+			"purchase_count" => "3",
+      "seller_name" => $this->seller->data->fullname
 		);
 
     if( $for == "shop" ){
