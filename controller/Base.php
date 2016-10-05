@@ -52,7 +52,7 @@ class Base {
 		$user_id = $_GET['user_id'];
 		$this->init_db();
 
-		$this->user = new User($user_id);
+		$this->user = User::with_id($user_id);
 	}
 
 	function redirect($url){

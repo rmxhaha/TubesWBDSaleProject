@@ -14,20 +14,13 @@ class AccountController extends Base{
 		$this->init_db();
 		$username = $_POST["username"];
 		$password = $_POST["password"];
-		$username = $this->db->real_escape_string($username);
-		$password = $this->db->real_escape_string($password);
+		$user_id = User::authenticate($username, $password);
 
-		$query = "SELECT id FROM user WHERE (username='$username' OR email='$username') AND password='$password';";
-
-		if( $result = $this->db->query($query) ){
-			if( $result->num_rows == 1 ){
-				$row = $result->fetch_object();
-				$this->redirect("./home.php?user_id=".$row->id);
-			}
-			else {
-				$this->redirect("./login.php");
-			}
-			$result->close();
+		if( !$user_id ){
+			$this->redirect("./login.php");
+		}
+		else {
+			$this->redirect("./home.php?user_id=$user_id");
 		}
 	}
 
