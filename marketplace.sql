@@ -33,9 +33,7 @@ CREATE TABLE `product` (
   `description` text NOT NULL,
   `price` int(11) NOT NULL,
   `photo` VARCHAR( 1024 ) NOT NULL NOT NULL,
-  `stock` int(11) NOT NULL,
-  `purchase` int(11) NOT NULL,
-  `like` int(11) NOT NULL
+  `seller_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -53,8 +51,8 @@ CREATE TABLE `purchase` (
   `creditnumber` int(12) NOT NULL,
   `threedigit` int(3) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `id_pembeli` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL
+  `buyer_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

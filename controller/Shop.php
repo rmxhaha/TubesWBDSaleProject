@@ -1,5 +1,6 @@
 <?php
 require_once "controller/Base.php";
+require_once "model/Product.php";
 
 class ShopController extends Base{
 	function __construct(){
@@ -17,15 +18,8 @@ class ShopController extends Base{
 
 	function your_products_page(){
 		$this->view->header = $this->render_header("What are you going to sell today?","your_product");
-		$this->view->products = $this->render_shop_product(array(
-			"create_date" => "30 February 2016",
-			"product_image" => "./public/images/sample.png",
-			"product_name" => "Poster",
-			"product_description" => "sample product desc, Ukuran 20x20",
-			"product_price" => "IDR 135,000",
-			"like_count" => "7",
-			"purchase_count" => "3"
-		));
+		$prod = Product::with_id(1);
+		$this->view->products = $prod->render("shop");
 
 		$this->view->render("shop_browse.php");
 	}
@@ -38,6 +32,7 @@ class ShopController extends Base{
 		$this->view->product_price = "";
 		$this->view->product_name = "";
 		$this->view->product_description = "";
+		$this->view->errors = "";
 		$this->view->add_product_action = "./shop.php?action=add_product&user_id=".$this->user->data->id;
 	}
 
@@ -51,10 +46,20 @@ class ShopController extends Base{
 		$imageFileType = pathinfo(basename($_FILES["product_photo"]["name"]),PATHINFO_EXTENSION);
 		$errors = array();
 
-		$uploadOk = 1;
-		$target_file = IMAGE_UPLOAD_DIR . $this->user->username.".$imageFileType";
-		$check = getimagesize($_FILES["product_photo"]["tmp_name"]);
-		if($check === false) {
+		$product_name = $_POST["product_name"];
+		$product_description = $_POST["product_description"];
+		$product_price = $_POST["product_price"];
+
+		if (!preg_match("/^[0-9]*$/",$product_price) || strlen($product_price) < 1 ) {
+			array_push($errors, "Product price must be a positive number");
+		}
+
+		if (!preg_match("/^[a-zA-Z ]*$/",$product_name) || strlen($product_name) < 1 ) {
+			array_push($errors, "Product Name only allow letters and white space");
+		}
+
+		$target_file = IMAGE_UPLOAD_DIR . $this->user->data->username.".$imageFileType";
+		if($_FILES["product_photo"]["tmp_name"] && !getimagesize($_FILES["product_photo"]["tmp_name"])) {
 			array_push($errors,"File is not an image.");
     }
 
@@ -69,13 +74,32 @@ class ShopController extends Base{
 
 		if( count($errors) == 0 ){
 			if (move_uploaded_file($_FILES["product_photo"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["product_photo"]["name"]). " has been uploaded.";
-	    } else {
-        echo "Sorry, there was an error uploading your file.";
+				$res = Product::register(array(
+					"product_name" => $product_name,
+					"product_price" => $product_price,
+					"product_description" => $product_description,
+					"product_photo" => $target_file,
+					"seller_id" => $this->user->data->id
+				),$this->db);
+				$this->redirect("./shop.php?action=browse&user_id=".$this->user->data->id );
 	    }
 		}
+		else {
+			$this->add_product_form_init();
 
+			$errors_str = "";
+			foreach($errors as $err){
+			 $errors_str .= "<span class=error>$err</span>";
+			}
 
+			$this->view->product_name = $product_name;
+			$this->view->product_price = $product_price;
+			$this->view->product_description = $product_description;
+
+			$this->view->header = $this->render_header("Please add your product here","your_product");
+			$this->view->errors = $errors_str;
+			$this->view->render("shop_add_product.html");
+		}
 	}
 
 	function delete_product(){

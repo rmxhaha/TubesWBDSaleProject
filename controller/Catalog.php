@@ -7,14 +7,6 @@ class CatalogController extends Base{
 		$this->init_user();
 	}
 
-	function render_catalog_product($option){
-		$view = new Template();
-		foreach($option as $key=>$value){
-			$view->__set($key,$value);
-		}
-		return $view->render_return("catalog_product.php");
-	}
-
 	function catalog(){
 		$products = "";
 		$this->view->header = $this->render_header("What are you going to buy today?","catalog");
