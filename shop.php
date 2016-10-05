@@ -1,5 +1,5 @@
 <?php
-require "controller/Shop.php";
+require_once "controller/Shop.php";
 
 if( $_GET['action'] == "browse" ){
   $shop = new ShopController();

@@ -1,5 +1,5 @@
 <?php
-require "controller/Catalog.php";
+require_once "controller/Catalog.php";
 
 $catalog = new CatalogController();
 $catalog->catalog();
