@@ -1,5 +1,5 @@
 <?php
-require "controller/Base.php";
+require_once "controller/Base.php";
 
 class CatalogController extends Base{
 	function __construct(){

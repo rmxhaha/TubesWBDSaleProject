@@ -1,5 +1,6 @@
 <?php
-require "Template.php";
+require_once "model/Template.php";
+require_once "model/User.php";
 
 class Base {
 	function __construct(){
@@ -8,7 +9,7 @@ class Base {
 	}
 
 	function render_header($title,$highlight){
-		$user = $this->user;
+		$user = $this->user->data;
 		$view = new Template();
 
 		$view->header_catalog_class = "";
@@ -43,21 +44,6 @@ class Base {
 		$this->db = $mysqli;
 	}
 
-	function get_user_data($user_id){
-		$query = "SELECT * FROM user WHERE id='$user_id';";
-
-		if( $result = $this->db->query($query) ){
-			if( $result->num_rows == 1 ){
-				$row = $result->fetch_object();
-				return $row;
-			}
-			else {
-				return false;
-			}
-			$result->close();
-		}
-	}
-
 	function init_user(){
 		$user_id = $_GET['user_id'];
 		if( empty($user_id) )
@@ -66,7 +52,7 @@ class Base {
 		$user_id = $_GET['user_id'];
 		$this->init_db();
 
-		$this->user = $this->get_user_data($user_id);
+		$this->user = new User($user_id);
 	}
 
 	function redirect($url){

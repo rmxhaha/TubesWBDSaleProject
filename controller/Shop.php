@@ -1,5 +1,5 @@
 <?php
-require "controller/Base.php";
+require_once "controller/Base.php";
 
 class ShopController extends Base{
 	function __construct(){
@@ -38,7 +38,7 @@ class ShopController extends Base{
 		$this->view->product_price = "";
 		$this->view->product_name = "";
 		$this->view->product_description = "";
-		$this->view->add_product_action = "./shop.php?action=add_product&user_id=".$this->user->id;
+		$this->view->add_product_action = "./shop.php?action=add_product&user_id=".$this->user->data->id;
 	}
 
 	function add_product_form(){

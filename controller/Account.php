@@ -1,5 +1,5 @@
 <?php
-require "controller/Base.php";
+require_once "controller/Base.php";
 
 class AccountController extends Base{
 	function __construct(){

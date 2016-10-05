@@ -1,6 +1,5 @@
 <?php
 require_once "config.php";
-
 class Template {
   private $_scriptPath=TEMPLATE_PATH;//comes from config.php
   public $properties;
@@ -32,5 +31,4 @@ class Template {
       return $this->properties[$k];
   }
 }
-
 ?>
