@@ -1,5 +1,6 @@
 <?php
 require_once "controller/Base.php";
+require_once "model/User.php";
 
 class AccountController extends Base{
 	function __construct(){
@@ -96,20 +97,14 @@ class AccountController extends Base{
 
 		//SQL execute
 		if( empty($emailErr) ){
-			$query= "SELECT COUNT(*) FROM user WHERE email='$email'";
-			if( $result = $this->db->query($query) ){
-				$row = $result->fetch_array(MYSQLI_NUM);
-				if($row[0]==1)
-					$emailErr = "Email has already been used";
+			if( !User::email_available($email,$this->db) ){
+				$emailErr = "Email has already been used";
 			}
 		}
 
 		if( empty($usernameErr) ){
-			$query= "SELECT COUNT(*) FROM user WHERE username='$username'";
-			if( $result = $this->db->query($query) ){
-				$row = $result->fetch_array(MYSQLI_NUM);
-				if($row[0]==1)
-					$usernameErr = "Username has already been used";
+			if( !User::username_available($username,$this->db) ){
+				$usernameErr = "Username has already been used";
 			}
 		}
 

@@ -20,10 +20,12 @@ class User extends Model {
     return $instance;
   }
 
-  static function authenticate($username_email, $password){
-    $m = new Model();
-    $m->init_db();
-    $db = $m->db;
+  static function authenticate($username_email, $password, $db){
+    if( !isset($db) ){
+      $m = new Model();
+      $m->init_db();
+      $db = $m->db;
+    }
 
     $username = $db->real_escape_string($username_email);
 		$password = $db->real_escape_string($password);
@@ -38,7 +40,38 @@ class User extends Model {
       $result->close();
       return $answer;
     }
+  }
 
+  static function email_available($email,$db){
+    if( !isset($db) ){
+      $m = new Model();
+      $m->init_db();
+      $db = $m->db;
+    }
+
+    $query= "SELECT COUNT(*) FROM user WHERE email='$email'";
+    if( $result = $db->query($query) ){
+      $row = $result->fetch_array(MYSQLI_NUM);
+      return ($row[0]==0); // email available
+    }
+
+    return false;
+  }
+
+  static function username_available($username,$db){
+    if( !isset($db) ){
+      $m = new Model();
+      $m->init_db();
+      $db = $m->db;
+    }
+
+    $query= "SELECT COUNT(*) FROM user WHERE username='$username'";
+    if( $result = $db->query($query) ){
+      $row = $result->fetch_array(MYSQLI_NUM);
+      return ($row[0]==0); // email available
+    }
+
+    return false;
   }
 
   function init_by_id($user_id){
