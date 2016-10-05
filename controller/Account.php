@@ -110,11 +110,16 @@ class AccountController extends Base{
 
 
 		if( empty($nameErr) && empty($usernameErr) && empty($emailErr) && empty($passError) && empty($postcodeError) && empty($phoneError)){
-			$query = "
-				INSERT INTO user (`fullname`,`username`,`email`,`password`,`address`,`postalcode`,`phonenumber`)
-				VALUES ('$fullname','$username','$email','$password','$fulladdress','$postcode','$phone')
-			";
-			if( $result = $this->db->query($query) ){
+			$data = array(
+				"fullname" => $fullname,
+				"username" => $username,
+				"email" => $email,
+				"password" => $password,
+				"fulladdress" => $fulladdress,
+				"postcode" => $postcode,
+				"phone" => $phone
+			);
+			if( User::register($data,$this->db) ){
 				$this->redirect("login.php");
 			}
 		}

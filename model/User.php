@@ -20,6 +20,17 @@ class User extends Model {
     return $instance;
   }
 
+  static function register($data,$db){
+    $query = "
+      INSERT INTO user (`fullname`,`username`,`email`,`password`,`address`,`postalcode`,`phonenumber`)
+      VALUES ('$data[fullname]','$data[username]','$data[email]','$data[password]','$data[fulladdress]','$data[postcode]','$data[phone]')
+    ";
+    if( $result = $db->query($query) ){
+      return User::with_row($data);
+    }
+    return false;
+  }
+
   static function authenticate($username_email, $password, $db){
     if( !isset($db) ){
       $m = new Model();
