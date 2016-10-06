@@ -42,6 +42,16 @@ class ShopController extends Base{
 		$this->view->render("shop_add_product.html");
 	}
 
+	static function generate_random_string($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+	}
+
 	function add_product(){
 		$imageFileType = pathinfo(basename($_FILES["product_photo"]["name"]),PATHINFO_EXTENSION);
 		$errors = array();
@@ -58,7 +68,7 @@ class ShopController extends Base{
 			array_push($errors, "Product Name only allow letters and white space");
 		}
 
-		$target_file = IMAGE_UPLOAD_DIR . $this->user->data->username.".$imageFileType";
+		$target_file = IMAGE_UPLOAD_DIR . ShopController::generate_random_string().".$imageFileType";
 		if($_FILES["product_photo"]["tmp_name"] && !getimagesize($_FILES["product_photo"]["tmp_name"])) {
 			array_push($errors,"File is not an image.");
     }
