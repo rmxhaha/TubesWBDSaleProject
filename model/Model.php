@@ -6,8 +6,13 @@ function money_f($p){
   if( $remainder == 0 ){
     return "IDR $p";
   }
-  else
-    return money_f( $remainder ).",".( intval($p % 1000) );
+  else{
+		$p = intval($p % 1000).'';
+		while( strlen($p) < 3 )
+			$p = "0".$p;
+		return money_f( $remainder ).".".$p;
+
+	}
 }
 
 function date_catalog_f($raw){
