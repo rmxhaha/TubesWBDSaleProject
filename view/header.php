@@ -16,6 +16,7 @@
 	    background-color: white;
 	}
 
+<<<<<<< HEAD
 	li {
 	    float: left;
 	    width: 19.5%;
@@ -35,6 +36,12 @@
 	    padding: 11px 11px;
 	    text-decoration: none;
 	}
+=======
+	<div class="header-user">
+		Hi, <?=$this->user["name"]?><br>
+		<a class="red" href="<?=$this->header_logout_link?>">logout</a>
+	</div>
+>>>>>>> 5ebb0ff18b7353f3b9c0bf5db2328433d0940258
 
 	li a:hover:not(.active) {
 	    background-color: blue;

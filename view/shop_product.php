@@ -14,8 +14,8 @@
     <td>
       <div class="like_count"><?=$this->like_count?> Likes </div>
       <div class="purchase_count"><?=$this->purchase_count?> Purchases </div>
-      <a href="javascript:edit_product(<?=$this->product_id?>)">EDIT</div>
-      <a href="javascript:delete_product(<?=$this->product_id?>)">DELETE</div>
+      <a class="orange" href="javascript:edit_product(<?=$this->product_id?>)">EDIT</div>
+      <a class="red" href="javascript:delete_product(<?=$this->product_id?>)">DELETE</div>
     </td>
   </tr>
   </table>

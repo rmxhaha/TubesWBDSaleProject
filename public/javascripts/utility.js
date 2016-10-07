@@ -13,6 +13,30 @@ function validateUsername(username){
 	return nameRegex.test(username);
 }
 
+function validateName(username){
+	var nameRegex = /^[a-zA-Z \-]+$/;
+	return nameRegex.test(username);
+}
+function validatePositiveNumber(n){
+	var n = parseInt(n);
+	if( isNaN(n) ) return false;
+
+	return n > 0;
+}
+
+function show_error(errors){
+  var errors_container = document.getElementsByClassName("error-container")[0];
+  errors_container.innerHTML = "";
+
+  for( var i in errors ){
+    var d = document.createElement("div");
+    d.setAttribute("class","error");
+    d.innerHTML = errors[i];
+    errors_container.appendChild(d);
+  }
+}
+
+
 function request(method,uri,data,callback){
 	function serialize(data){
 		var arr = [];
