@@ -128,3 +128,20 @@ a:hover{
 .header-user {
   text-align: right;
 }
+
+.small-description {
+  font-size : 0.8em;
+}
+.catalog-product-left {
+  width : 120px;
+}
+
+.catalog-product-mid {
+  width : 420px;
+
+}
+
+.catalog-product-right {
+  width : 160px;
+
+}
