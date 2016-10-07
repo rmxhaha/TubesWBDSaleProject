@@ -8,3 +8,8 @@ function delete_product(product_id){
     });
   }
 }
+
+function edit_product(product_id){
+  var user_id = parse_get("user_id");
+  window.location = "./shop.php?action=edit_product&user_id=" + user_id + "&id=" + product_id;
+}

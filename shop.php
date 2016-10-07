@@ -15,6 +15,16 @@ else if( $_GET['action'] == "add_product" ){
     $shop->add_product();
   }
 }
+else if( $_GET['action'] == "edit_product" ){
+  if( $_SERVER['REQUEST_METHOD'] == "GET" ){
+    $shop = new ShopController();
+    $shop->edit_product_form();
+  }
+  else if( $_SERVER['REQUEST_METHOD'] == "POST" ){
+    $shop = new ShopController();
+    $shop->edit_product();
+  }
+}
 else if( $_GET['action'] == "delete_product" ){
   $shop = new ShopController();
   $shop->delete_product();

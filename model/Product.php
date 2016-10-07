@@ -89,14 +89,14 @@ class Product extends Model{
 
     $query = "";
     if( isset($this->data->id) ){
+      $product_id = $this->data->id;
       // update
       $query = "
         UPDATE product SET
           name='$product_name',
           description='$product_description',
           price='$product_price',
-          photo='$product_photo',
-          seller_id='$seller_id'
+          photo='$product_photo'
         WHERE
           id='$product_id'
         LIMIT 1;";
@@ -107,6 +107,7 @@ class Product extends Model{
         INSERT INTO product (`name`,`description`,`price`,`photo`,`seller_id`)
         VALUES ('$product_name','$product_description','$product_price','$product_photo','$seller_id');
       ";
+      echo $query;
     }
 
 
