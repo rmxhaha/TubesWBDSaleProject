@@ -123,5 +123,17 @@ class User extends Model {
     return $row[0] == 1;
   }
 
+  function purchase($option){
+    $this->init_db();
+    $user_id = $this->data->id;
+    $product_id = $option["product"]->data->id;
+
+    $query = "
+      INSERT INTO purchase (`consignee`,`address`,`postcode`,`phone`,`credit_card_number`,`quantity`,`buyer_id`,`product_id`)
+      VALUES ('$option[consignee]','$option[address]','$option[postcode]','$option[phone]','$option[credit_card_number]','$option[quantity]','$product_id','$user_id');
+    ";
+    return $this->db->query($query);
+  }
+
 }
 ?>

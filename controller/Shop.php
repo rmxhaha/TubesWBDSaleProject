@@ -233,13 +233,25 @@ class ShopController extends Base{
 		$this->view->credit_card_number = "";
 		$this->view->credit_card_verification = "";
 		$this->view->errors = "";
-		$this->view->form_action = "./shop.php?action=edit_product&user_id=".$this->user->data->id."&id=".$product_id;
+		$this->view->form_action = "./shop.php?action=buy_product&user_id=".$this->user->data->id."&id=".$product_id;
 
 		$this->view->errors = "";
 		$this->view->render("shop_purchase_form.html");
 	}
 
 	function buy_product(){
+		$product_id = $_GET['id'];
+		$product = Product::with_id($product_id);
+		$this->user->purchase(array(
+			"product" => $product,
+			"quantity" => $_POST["quantity"],
+			"consignee" => $_POST["consignee"],
+			"postcode" => $_POST['postcode'],
+			"phone" => $_POST["phone"],
+			"address" => $_POST["fulladdress"],
+			"credit_card_number" => $_POST["credit_card_number"]
+		));
+		$this->redirect("./purchases.php?user_id="+$this->user->data->id);
 
 	}
 }
