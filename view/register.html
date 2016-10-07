@@ -4,11 +4,13 @@
 <head>
 	<title>MarketPlace</title>
 	<link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
+	<script src="public/javascripts/utility.js"></script>
+	<script src="public/javascripts/account.js"></script>
 </head>
 <body>
 
 <div class="container">
-  <form action="./register.php" method="POST">
+  <form action="./register.php" method="POST" onsubmit="return validate_register()">
   <h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
 	<h2>Please Register</h2>
 	<hr>
@@ -42,6 +44,10 @@
     <label for="phone">Phone Number</label>
     <input type="text" id="phone" name="phone" value="<?=$this->phone?>">
     <span for="phone" class="error"><?=$this->phoneError;?></span>
+
+		<div class="error-container">
+		</div>
+
 
     <input type="submit" value="Register">
     <br>
