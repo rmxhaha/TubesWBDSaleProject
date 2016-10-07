@@ -89,13 +89,14 @@ class ShopController extends Base{
 
 		if( count($errors) == 0 ){
 			if (move_uploaded_file($_FILES["product_photo"]["tmp_name"], $target_file)) {
-				$res = Product::register(array(
-					"product_name" => $product_name,
-					"product_price" => $product_price,
-					"product_description" => $product_description,
-					"product_photo" => $target_file,
+				$res = Product::with_row(array(
+					"name" => $product_name,
+					"price" => $product_price,
+					"description" => $product_description,
+					"photo" => $target_file,
 					"seller_id" => $this->user->data->id
-				),$this->db);
+				));
+				$res->save();
 				$this->redirect("./shop.php?action=browse&user_id=".$this->user->data->id );
 	    }
 		}

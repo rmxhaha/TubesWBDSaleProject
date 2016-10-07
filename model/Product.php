@@ -10,6 +10,21 @@ function money_f($p){
     return money_f( $remainder ).",".( intval($p % 1000) );
 }
 
+function date_catalog_f($raw){
+  $phpdate = strtotime($raw);
+  $mysqldate1 = date('l, d F Y',$phpdate);
+  $mysqldate2 = date('H i',$phpdate);
+  return $mysqldate1.", at ".$mysqldate2;
+}
+
+function date_shop_f($raw){
+  $phpdate = strtotime($raw);
+  $mysqldate1 = date('l, d F Y',$phpdate);
+  $mysqldate2 = date('H i',$phpdate);
+  return "<b>".$mysqldate1."</b><BR>at ".$mysqldate2;
+
+}
+
 
 class Product extends Model{
   function __construct(){
@@ -56,20 +71,39 @@ class Product extends Model{
 
 
 
-  static function register($data,$db){
-    if( !isset($db) ){
-      $m = new Model();
-      $m->init_db();
-      $db = $m->db;
+  function save($data){
+    $this->init_db();
+    $product_name = $this->data->name;
+    $product_description = $this->data->description;
+    $product_price = $this->data->price;
+    $product_photo = $this->data->photo;
+    $seller_id = $this->data->seller_id;
+
+    $query = "";
+    if( isset($this->data->id) ){
+      // update
+      $query = "
+        UPDATE product SET
+          name='$product_name',
+          description='$product_description',
+          price='$product_price',
+          photo='$product_photo',
+          seller_id='$seller_id'
+        WHERE
+          id='$product_id'
+        LIMIT 1;";
+    }
+    else {
+      // insert
+      $query = "
+        INSERT INTO product (`name`,`description`,`price`,`photo`,`seller_id`)
+        VALUES ('$product_name','$product_description','$product_price','$product_photo','$seller_id');
+      ";
     }
 
-    $query = "
-      INSERT INTO product (`name`,`description`,`price`,`photo`,`seller_id`)
-      VALUES ('$data[product_name]','$data[product_description]','$data[product_price]','$data[product_photo]','$data[seller_id]');
-    ";
 
-    if( $result = $db->query($query) ){
-      return Product::with_row($data);
+    if( $result = $this->db->query($query) ){
+      return true;
     }
     return false;
   }
@@ -117,6 +151,8 @@ class Product extends Model{
 		);
 
     if( $for == "shop" ){
+      $option["create_date"] = date_shop_f( $this->data->create_date );
+
       $view = new Template();
   		foreach($option as $key=>$value){
   			$view->__set($key,$value);
@@ -124,6 +160,7 @@ class Product extends Model{
   		return $view->render_return("shop_product.php");
     }
     else if( $for == "catalog" ){
+      $option["create_date"] = date_catalog_f( $this->data->create_date );
       $view = new Template();
   		foreach($option as $key=>$value){
   			$view->__set($key,$value);
