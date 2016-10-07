@@ -134,7 +134,7 @@ class Product extends Model{
 			"product_price" => money_f( $this->data->price ),
 			"like_count" => $this->data->likes,
 			"purchase_count" => $this->data->purchases,
-      "seller_name" => $this->seller->data->fullname
+      "seller_name" => $this->seller->data->username
 		);
 
     if( $for == "shop" ){
