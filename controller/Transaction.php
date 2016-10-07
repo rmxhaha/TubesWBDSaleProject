@@ -1,5 +1,6 @@
 <?php
 require_once "controller/Base.php";
+require_once "model/Transaction.php";
 
 class TransactionController extends Base{
 	function __construct(){
@@ -32,8 +33,9 @@ class TransactionController extends Base{
 	function purchase(){
 		$product_id = $_GET['id'];
 		$product = Product::with_id($product_id);
-		$this->user->purchase(array(
+		Transaction::create(array(
 			"product" => $product,
+			"buyer" => $this->user,
 			"quantity" => $_POST["quantity"],
 			"consignee" => $_POST["consignee"],
 			"postcode" => $_POST['postcode'],
@@ -41,8 +43,8 @@ class TransactionController extends Base{
 			"address" => $_POST["fulladdress"],
 			"credit_card_number" => $_POST["credit_card_number"]
 		));
-		$this->redirect("./purchases.php?user_id=".$this->user->data->id);
 
+		$this->redirect("./purchases.php?user_id=".$this->user->data->id);
 	}
 
 	function get_purchase_history($option){
