@@ -100,5 +100,28 @@ class User extends Model {
       $result->close();
     }
   }
+
+  function like($product){
+    $this->init_db();
+    $pid = $product->data->id;
+    $uid = $this->data->id;
+    $query = "DELETE FROM product_like WHERE liker_id='$uid' AND product_id='$pid'";
+    $this->db->query($query);
+    if( $this->db->affected_rows == 0 ){
+      $query = "INSERT INTO product_like (liker_id,product_id) VALUES ($uid, $pid)";
+      $this->db->query($query);
+    }
+  }
+
+  function liked($product){
+    $this->init_db();
+    $pid = $product->data->id;
+    $uid = $this->data->id;
+    $query = "SELECT COUNT(*) FROM product_like  WHERE liker_id='$uid' AND product_id='$pid';";
+    $result = $this->db->query($query);
+    $row = $result->fetch_array(MYSQLI_NUM);
+    return $row[0] == 1;
+  }
+
 }
 ?>

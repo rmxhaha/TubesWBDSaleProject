@@ -14,6 +14,13 @@ class CatalogController extends Base{
 		$products = Product::get_all($this->db);
 		$product_str = "";
 		foreach( $products as $product ){
+			if( $this->user->liked($product) ){
+				$product->data->like_button_text = "UNLIKE";
+			}
+			else {
+				$product->data->like_button_text = "LIKE";
+			}
+
 			$product_str .= $product->render("catalog");
 		}
 
@@ -21,6 +28,13 @@ class CatalogController extends Base{
 		$this->view->render("catalog.php");
 
 		$this->db->close();
+	}
+
+	function like(){
+		$product_id = $_GET['id'];
+
+		$product = Product::with_id($product_id);
+		$this->user->like($product);
 	}
 }
 ?>
