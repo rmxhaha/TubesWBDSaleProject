@@ -93,7 +93,7 @@ class ShopController extends Base{
 					"name" => $product_name,
 					"price" => $product_price,
 					"description" => $product_description,
-					"photo" => $target_file,
+					"photo"	 => $target_file,
 					"seller_id" => $this->user->data->id
 				));
 				$res->save();
@@ -119,7 +119,12 @@ class ShopController extends Base{
 	}
 
 	function delete_product(){
+		$product_id = $_GET['id'];
+		$product = Product::with_id($product_id);
 
+		if( $product->data->seller_id == $_GET['user_id'] ){
+			$product->delete();
+		}
 	}
 
 	function edit_product_form(){

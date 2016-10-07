@@ -15,5 +15,9 @@ else if( $_GET['action'] == "add_product" ){
     $shop->add_product();
   }
 }
+else if( $_GET['action'] == "delete_product" ){
+  $shop = new ShopController();
+  $shop->delete_product();
+}
 
 ?>

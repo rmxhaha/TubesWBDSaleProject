@@ -1,4 +1,4 @@
-<div>
+<div class="product_<?=$this->product_id?>">
   <?=$this->create_date?><br>
   <hr>
   <table>
@@ -14,8 +14,8 @@
     <td>
       <div class="like_count"><?=$this->like_count?> Likes </div>
       <div class="purchase_count"><?=$this->purchase_count?> Purchases </div>
-      <a href="#">EDIT</a>
-      <a href="#">DELETE</a>
+      <a>EDIT</a>
+      <a href="javascript:delete_product(<?=$this->product_id?>)">DELETE</div>
     </td>
   </tr>
   </table>

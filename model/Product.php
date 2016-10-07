@@ -69,9 +69,17 @@ class Product extends Model{
     return $all;
   }
 
+  function delete(){
+    if( isset( $this->data->id ) ){
+      $this->init_db();
+      if( $this->db->query("DELETE FROM product WHERE id=".$this->data->id." LIMIT 1;" ) )
+        return true;
+    }
 
+    return false;
+  }
 
-  function save($data){
+  function save(){
     $this->init_db();
     $product_name = $this->data->name;
     $product_description = $this->data->description;
@@ -140,7 +148,7 @@ class Product extends Model{
 
   function render($for = "shop"){
     $option = array(
-			"create_date" => "30 February 2016",
+      "product_id" => $this->data->id,
 			"product_image" => $this->data->photo,
 			"product_name" => $this->data->name,
 			"product_description" => $this->data->description,
