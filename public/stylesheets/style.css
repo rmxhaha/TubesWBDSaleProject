@@ -116,3 +116,43 @@ a:hover{
 .header-user {
   text-align: right;
 }
+/*CSS For Header*/
+.greeting{
+        text-align: right;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: white;
+    }
+
+    li {
+        float: left;
+        width: 19.5%;
+        height: 40px;
+        border-right: 1px solid #000;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        text-orientation: center;
+    }
+    li:first-of-type {
+        border-left: 1px solid #000;
+    }
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 13px 13px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: blue;
+        color: white;
+    }
+
+    .active {
+        background-color: white;
+    }
