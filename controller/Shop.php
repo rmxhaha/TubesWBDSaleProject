@@ -43,7 +43,7 @@ class ShopController extends Base{
 
 	function add_product_form(){
 		$this->add_product_form_init();
-		$this->view->header = $this->render_header("Please add your product here","your_product");
+		$this->view->header = $this->render_header("Please add your product here","add_product");
 		$this->view->render("shop_add_product.html");
 	}
 

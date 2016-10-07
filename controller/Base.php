@@ -28,7 +28,7 @@ class Base {
 		$view->user = array( "name" => $user->fullname );
 		$view->title = $title;
 
-		$view->__set("header_".$highlight."_class","header_highlight");
+		$view->__set("header_".$highlight."_class","header-highlight");
 
 		return $view->render_return("header.php");
 	}
