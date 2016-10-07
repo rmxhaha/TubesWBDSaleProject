@@ -28,8 +28,8 @@ input[type=password], input[type=text], input[type=file], select, textarea {
 }
 
 input[type=submit], button {
-    width: 50%;
-    background-color: #4CAF50;
+    width: 20%;
+    background-color: blue;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -117,8 +117,11 @@ a:hover{
   text-align: right;
 }
 /*CSS For Header*/
-.greeting{
+  .greeting{
         text-align: right;
+    }
+    .greeting a{
+      color: red;
     }
     ul {
         list-style-type: none;
@@ -126,6 +129,7 @@ a:hover{
         padding: 0;
         overflow: hidden;
         background-color: white;
+        text-decoration: none;
     }
 
     li {
@@ -136,6 +140,7 @@ a:hover{
         border-top: 1px solid #000;
         border-bottom: 1px solid #000;
         text-orientation: center;
+        text-decoration: none;
     }
     li:first-of-type {
         border-left: 1px solid #000;
