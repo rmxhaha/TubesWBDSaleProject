@@ -14,3 +14,7 @@ function like(element,pid){
     });
 	}
 }
+
+function buy(element,pid){
+  window.location = "./shop.php?action=buy_product&user_id="+parse_get("user_id")+"&id="+pid;
+}

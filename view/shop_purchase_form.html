@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>MarketPlace</title>
+	<link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
+  <script src="public/javascripts/utility.js"></script>
+  <script src="public/javascripts/shop.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<?=$this->header?>
+
+  <form action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="product_id" value="<?=$this->product_id?>">
+
+    <table>
+      <tr>
+        <td>Product</td>
+        <td>:</td>
+        <td><?=$this->product_name?></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>:</td>
+        <td id=product_price><?=$this->product_price?></td>
+      </tr>
+      <tr>
+        <td>Quantity</td>
+        <td>:</td>
+        <td>
+          <input product-price="<?=$this->product_price_raw?>" onkeyup="update_total_price(this)" type="text" name="quantity" value="1">
+        </td>
+      </tr>
+      <tr>
+        <td>Total Price</td>
+        <td>:</td>
+        <td id=total_price><?=$this->product_price?></td>
+      </tr>
+      <tr>
+        <td>Delivery To</td>
+        <td>:</td>
+        <td>
+
+        </td>
+      </tr>
+    </table>
+
+
+    <label for="consignee">Consignee</label>
+    <input type="text" name="consignee" value="<?=$this->consignee?>">
+
+    <label for="fulladdress">Full Address</label>
+    <textarea id="faddr" name="fulladdress"><?=$this->fulladdress?></textarea>
+
+    <label for="postcode">Postal Code</label>
+    <input type="text" id="postcode" name="postcode"  value="<?=$this->postcode?>">
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" value="<?=$this->phone?>">
+
+    <label for="credit_card_number">12 Digits Credit Card Number</label>
+    <input type="text" id="credit_card_number" name="credit_card_number" value="<?=$this->credit_card_number?>">
+
+    <label for="credit_card_verification">3 Digits Card Verification Value</label>
+    <input type="text" id="credit_card_verification" name="credit_card_verification" value="<?=$this->credit_card_verification?>">
+
+		<div class="error-container">
+			<?=$this->errors?>
+		</div>
+
+    <button onclick="window.history.go(-1)">CANCEL</button>
+    <input type="submit" value="ADD">
+  </form>
+</div>
+
+</body>
+</html>
