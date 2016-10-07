@@ -17,6 +17,9 @@ body {
 	color: blue;
 	text-align: center;
 }
+input {
+  margin-top: 0px !important;
+}
 input[type=password], input[type=text], input[type=file], select, textarea {
     width: 100%;
     padding: 12px 20px;
@@ -28,8 +31,8 @@ input[type=password], input[type=text], input[type=file], select, textarea {
 }
 
 input[type=submit], button {
-    width: 50%;
-    background-color: #4CAF50;
+    width: 25%;
+    background-color: blue;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -40,7 +43,14 @@ input[type=submit], button {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: blue;
+}
+
+label{
+  font-size:0.9em;
+  display:block;
+  padding-top: 0.7em;
+  padding-bottom: 0.1em;
 }
 
 .error {
