@@ -16,7 +16,14 @@ class Transaction extends Model {
   }
 
   static function get_by_seller($seller_id,$db){
-
+    $query = "SELECT purchase_id FROM purchase WHERE seller_id='$seller_id' ORDER BY purchase_id DESC;";
+    $all = array();
+    if( $result = $db->query($query) ){
+      while($row = $result->fetch_array(MYSQLI_NUM)){
+        array_push($all, Transaction::with_id($row[0]));
+      }
+    }
+    return $all;
   }
 
   static function get_by_buyer($buyer_id,$db){

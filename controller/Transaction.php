@@ -56,7 +56,7 @@ class TransactionController extends Base{
 			$transaction_str .= $t->render();
 		}
 
-		$this->view->header = $this->render_header("Please update your product here","");
+		$this->view->header = $this->render_header("Here are your purchases","purchases");
 		$this->view->transactions = $transaction_str;
 
 		$this->view->render("purchase_history.php");
@@ -64,6 +64,16 @@ class TransactionController extends Base{
 
 	function sales_history(){
 		// render page for seller
-	}
+		$transactions = Transaction::get_by_seller($this->user->data->id,$this->db);
+		$transaction_str = "";
+
+		foreach( $transactions as $t ){
+			$transaction_str .= $t->render();
+		}
+
+		$this->view->header = $this->render_header("Here are your sales","sales");
+		$this->view->transactions = $transaction_str;
+
+		$this->view->render("purchase_history.php");	}
 }
 ?>

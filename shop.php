@@ -28,13 +28,17 @@ else if( $_GET['action'] == "edit_product" ){
 }
 else if( $_GET['action'] == "buy_product" ){
   if( $_SERVER['REQUEST_METHOD'] == "GET" ){
-    $shop = new TransactionController();
-    $shop->purchase_form();
+    $trans = new TransactionController();
+    $trans->purchase_form();
   }
   else if( $_SERVER['REQUEST_METHOD'] == "POST" ){
-    $shop = new TransactionController();
-    $shop->purchase();
+    $trans = new TransactionController();
+    $trans->purchase();
   }
+}
+else if( $_GET['action'] == "sales" ){
+  $trans = new TransactionController();
+  $trans->sales_history();
 }
 else if( $_GET['action'] == "delete_product" ){
   $shop = new ShopController();
