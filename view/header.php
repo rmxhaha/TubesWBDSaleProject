@@ -1,8 +1,10 @@
 <div class="header-container">
 	<h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
 
-	Hi, <?=$this->user["name"]?><br>
-	<a href="<?=$this->header_logout_link?>">logout</a>
+	<div class="header-user">
+		Hi, <?=$this->user["name"]?><br>
+		<a class="red" href="<?=$this->header_logout_link?>">logout</a>
+	</div>
 
 
 	<table class="table-header-option">
