@@ -12,7 +12,7 @@
 <div class="container">
 	<?=$this->header?>
 
-  <form action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data">
+  <form action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data" onsubmit="return validate_purchase()">
     <input type="hidden" name="product_id" value="<?=$this->product_id?>">
 
     <table>
