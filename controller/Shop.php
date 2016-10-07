@@ -18,8 +18,13 @@ class ShopController extends Base{
 
 	function your_products_page(){
 		$this->view->header = $this->render_header("What are you going to sell today?","your_product");
-		$prod = Product::with_id(1);
-		$this->view->products = $prod->render("shop");
+		$products = Product::get_by_seller($this->user->data->id, $this->db);
+		$product_str = "";
+		foreach( $products as $product ){
+			$product_str .= $product->render("shop");
+		}
+
+		$this->view->products = $product_str;
 
 		$this->view->render("shop_browse.php");
 	}

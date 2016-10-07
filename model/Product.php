@@ -43,6 +43,19 @@ class Product extends Model{
     return $all;
   }
 
+  static function get_by_seller($user_id, $db){
+    $query = "SELECT id FROM product WHERE seller_id='$user_id' ORDER BY id DESC;";
+    $all = array();
+    if( $result = $db->query($query) ){
+      while($row = $result->fetch_array(MYSQLI_NUM)){
+        array_push($all, Product::with_id($row[0]));
+      }
+    }
+    return $all;
+  }
+
+
+
   static function register($data,$db){
     if( !isset($db) ){
       $m = new Model();
