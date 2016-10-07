@@ -47,12 +47,19 @@ class TransactionController extends Base{
 		$this->redirect("./purchases.php?user_id=".$this->user->data->id);
 	}
 
-	function get_purchase_history($option){
-		// get from db
-	}
-
 	function purchase_history(){
 		// render page for buyer
+		$transactions = Transaction::get_by_buyer($this->user->data->id,$this->db);
+		$transaction_str = "";
+
+		foreach( $transactions as $t ){
+			$transaction_str .= $t->render();
+		}
+
+		$this->view->header = $this->render_header("Please update your product here","");
+		$this->view->transactions = $transaction_str;
+
+		$this->view->render("purchase_history.php");
 	}
 
 	function sales_history(){

@@ -1,29 +1,7 @@
 <?php
 require_once "model/Model.php";
 
-function money_f($p){
-  $remainder = intval($p / 1000);
-  if( $remainder == 0 ){
-    return "IDR $p";
-  }
-  else
-    return money_f( $remainder ).",".( intval($p % 1000) );
-}
 
-function date_catalog_f($raw){
-  $phpdate = strtotime($raw);
-  $mysqldate1 = date('l, d F Y',$phpdate);
-  $mysqldate2 = date('H i',$phpdate);
-  return $mysqldate1.", at ".$mysqldate2;
-}
-
-function date_shop_f($raw){
-  $phpdate = strtotime($raw);
-  $mysqldate1 = date('l, d F Y',$phpdate);
-  $mysqldate2 = date('H i',$phpdate);
-  return "<b>".$mysqldate1."</b><BR>at ".$mysqldate2;
-
-}
 
 
 class Product extends Model{

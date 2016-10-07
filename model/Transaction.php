@@ -1,5 +1,7 @@
 <?php
 require_once "model/Model.php";
+require_once "model/User.php";
+require_once "model/Product.php";
 
 class Transaction extends Model {
   function __construct(){
@@ -11,6 +13,21 @@ class Transaction extends Model {
     $instance->init_by_id($user_id);
 
     return $instance;
+  }
+
+  static function get_by_seller($seller_id,$db){
+
+  }
+
+  static function get_by_buyer($buyer_id,$db){
+    $query = "SELECT purchase_id FROM purchase WHERE buyer_id='$buyer_id' ORDER BY purchase_id DESC;";
+    $all = array();
+    if( $result = $db->query($query) ){
+      while($row = $result->fetch_array(MYSQLI_NUM)){
+        array_push($all, Transaction::with_id($row[0]));
+      }
+    }
+    return $all;
   }
 
   static function create($option){
@@ -46,12 +63,37 @@ class Transaction extends Model {
       if( $result->num_rows == 1 ){
         $row = $result->fetch_object();
         $this->data = $row;
+        $this->seller = User::with_id($row->seller_id);
+        $this->product = Product::with_id($row->product_id);
       }
       else {
         throw new Exception("Unknown purchase id");
       }
       $result->close();
     }
+  }
+
+  function render(){
+    $option = array(
+      "create_date" => date_shop_f($this->data->purchasetime),
+      "product_image" => $this->product->data->photo,
+      "product_name" => $this->product->data->name,
+      "product_price" => money_f($this->product->data->price),
+      "quantity" => $this->data->quantity,
+      "total_price" => money_f($this->product->data->price * $this->data->quantity),
+      "seller_username" => $this->seller->data->username,
+      "consignee" => $this->data->consignee,
+      "address" => $this->data->address,
+      "postcode" => $this->data->postcode,
+      "phone" => $this->data->phone
+    );
+
+
+      $view = new Template();
+  		foreach($option as $key=>$value){
+  			$view->__set($key,$value);
+  		}
+  		return $view->render_return("transaction.php");
   }
 
 
