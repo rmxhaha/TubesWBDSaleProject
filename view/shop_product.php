@@ -3,20 +3,26 @@
   <hr>
   <table>
   <tr>
-    <td>
-      <img width=200 src="<?=$this->product_image?>" />
+    <td class="shop-product-left">
+      <img width=100 src="<?=$this->product_image?>" />
     </td>
-    <td>
-      <h4><b><?=$this->product_name?></b></h4>
+    <td class="shop-product-mid">
+      <b><?=$this->product_name?></b><br>
       <?=$this->product_price?><br>
-      <?=$this->product_description?>
+      <div class=small-description>
+        <?=$this->product_description?>
+      </div>
     </td>
-    <td>
-      <div class="like_count"><?=$this->like_count?> Likes </div>
-      <div class="purchase_count"><?=$this->purchase_count?> Purchases </div>
+    <td class="shop-product-right">
+      <div class=small-description>
+        <div class="like_count"><?=$this->like_count?> Likes </div>
+        <div class="purchase_count"><?=$this->purchase_count?> Purchases </div>
+      </div>
+      <br>
       <a class="orange" href="javascript:edit_product(<?=$this->product_id?>)">EDIT</div>
       <a class="red" href="javascript:delete_product(<?=$this->product_id?>)">DELETE</div>
     </td>
   </tr>
   </table>
+  <hr>
 </div>

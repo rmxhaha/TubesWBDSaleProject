@@ -2,8 +2,52 @@
 	<h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
     <div class="greeting">
 		Hi, <?=$this->user["name"]?><br>
-		<a href="<?=$this->header_logout_link?>">logout</a>
+		<a class="red" href="<?=$this->header_logout_link?>">logout</a>
 	</div>
+<<<<<<< HEAD
+=======
+	<style>
+    .greeting{
+    	text-align: right;
+    }
+	ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    background-color: white;
+	}
+
+	li {
+	    float: left;
+	    width: 19.5%;
+	    height: 40px;
+	    border-right: 1px solid #000;
+	    border-top: 1px solid #000;
+	    border-bottom: 1px solid #000;
+	    text-orientation: center;
+	}
+	li:first-of-type {
+	    border-left: 1px solid #000;
+	}
+	li a {
+	    display: block;
+	    color: black;
+	    text-align: center;
+	    padding: 11px 11px;
+	    text-decoration: none;
+	}
+
+	li a:hover:not(.active) {
+	    background-color: blue;
+	    color: white;
+	}
+
+	.active {
+	    background-color: white;
+	}
+	</style>
+>>>>>>> 7cac3b748742f5a903f29e372aefd793d1b41482
 	<ul class="table-header-option">
 			<li class="<?=$this->header_catalog_class?>">
 				<a href="<?=$this->header_catalog_link?>">Catalog </a>

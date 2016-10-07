@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container clearfix">
 	<?=$this->header?>
 
   <form action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data" onsubmit="return validate_purchase()">
@@ -30,7 +30,7 @@
         <td>Quantity</td>
         <td>:</td>
         <td>
-          <input product-price="<?=$this->product_price_raw?>" onkeyup="update_total_price(this)" type="text" name="quantity" value="1">
+          <input product-price="<?=$this->product_price_raw?>" onkeyup="update_total_price(this)" type="text" name="quantity" value="1" style="width: 100px">
         </td>
       </tr>
       <tr>
