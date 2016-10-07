@@ -36,5 +36,7 @@ class CatalogController extends Base{
 		$product = Product::with_id($product_id);
 		$this->user->like($product);
 	}
+
+
 }
 ?>
