@@ -8,7 +8,9 @@
     <td class="catalog-product-mid">
       <b><?=$this->product_name?></b><br>
       <?=$this->product_price?><br>
-      <?=$this->product_description?>
+      <div class=small-description>
+        <?=$this->product_description?>
+      </div>
     </td>
     <td class="catalog-product-right">
       <div class="small-description">
