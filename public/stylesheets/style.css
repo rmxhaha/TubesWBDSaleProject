@@ -141,7 +141,19 @@ a:hover{
   vertical-align: top;
 }
 
-.catalog-product-right, .shop-product-right {
+.catalog-product-right, .shop-product-right, .transaction-right {
   width : 160px;
+}
 
+.transaction-left {
+  width : 120px;
+}
+.transaction-mid {
+  width : 340px;
+  vertical-align: top;
+}
+
+.transaction-right {
+  width : 240px;
+  vertical-align: top;
 }
