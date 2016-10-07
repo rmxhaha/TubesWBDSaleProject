@@ -31,6 +31,30 @@ function money_f(x){
     return money_f( r ) + "," + x % 1000;
 }
 
+function validate_product(){
+  var name = document.getElementsByName("product_name")[0].value;
+  var price = document.getElementsByName("product_price")[0].value;
+  var desc = document.getElementsByName("product_description")[0].value;
+  var errors = [];
+
+  if( !validateName(name) ){
+    errors.push("Product name must be characters and space only");
+  }
+
+  if( !validatePositiveNumber(price) ){
+    errors.push("Price must be a positive number")
+  }
+
+  if( desc.length > 200 ){
+    errors.push("Description must be no more than 200 characters");
+  }
+
+  show_error(errors);
+
+  return errors.length == 0;
+}
+
+
 function validate_purchase(){
   var q = document.getElementsByName("quantity")[0].value;
   var errors = [];
@@ -51,16 +75,7 @@ function validate_purchase(){
     errors.push("Credit Card Verification Number must be 3 digits");
   }
 
-  var errors_container = document.getElementsByClassName("error-container")[0];
-  errors_container.innerHTML = "";
-
-  for( var i in errors ){
-    var d = document.createElement("div");
-    d.setAttribute("class","error");
-    d.innerHTML = errors[i];
-    errors_container.appendChild(d);
-  }
-
+  show_error(errors);
 
   return ( errors.length == 0 );
 }
