@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `product` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `name` varchar(20) NOT NULL,
   `description` text NOT NULL,
   `price` int(11) NOT NULL,
