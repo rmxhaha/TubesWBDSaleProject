@@ -149,7 +149,7 @@ class Product extends Model{
       $result->free();
     }
 
-    $query = "SELECT COUNT(*) FROM purchase WHERE product_id = '$id';";
+    $query = "SELECT SUM(quantity) FROM purchase WHERE product_id = '$id';";
 
     if( $result = $this->db->query($query) ){
       $row = $result->fetch_array(MYSQLI_NUM);

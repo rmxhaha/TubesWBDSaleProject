@@ -119,8 +119,9 @@ class AccountController extends Base{
 				"postcode" => $postcode,
 				"phone" => $phone
 			);
-			if( User::register($data,$this->db) ){
-				$this->redirect("login.php");
+
+			if( $user = User::register($data,$this->db) ){
+				$this->redirect("home.php?user_id=".$user->data->id );
 			}
 		}
 		else {
