@@ -20,72 +20,35 @@ Pada tugas besar ini, Anda diminta untuk membuat aplikasi *marketplace* **berbas
 
 ## Spesifikasi
 
-### Login
+![](mocks/screenshots/register_form_yang_terisi.png);
+Pengalaman berbelanja dimulai dengan melakukan registrasi pada website.
+Isi data sesuai label. Validasi akan dilakukan untuk tiap input.
+Setelah terdaftar User akan diarahkan ke halaman Catalog.
 
-![](mocks/login.jpg)
+![](mocks/screenshots/login2.png)
+Jika User sudah terdaftar maka User dapat memasukan username/email dan password untuk masuk ke halaman catalog.
 
-Pengguna dapat melakukan login sebagai user. Login hanya membandingkan username dan password saja, dan tidak perlu proteksi apapun. Halaman ini merupakan halaman pertama yang dibuka oleh pengguna ketika menjalankan aplikasi. Tidak ada proses otentikasi apakah pengguna sudah login atau belum dalam page lainnya. Identitas pengguna yang sedang login diberikan melalui HTTP GET pada URL (sebagai contoh: /catalog.php?id_active=2 menandakan bahwa pengguna yang sedang login memiliki id pengguna = 2).
+![](mocks/screenshots/catalog.png)
+Pada halaman catalog User dapat melihat seluruh produk dari seluruh User. Pencarian dengan keyword dapat dilakukan untuk menghemat waktu pencarian. Pencarian dapat dilakukan berdasarkan username maupun nama produk.
 
-### Register
+User juga dapat me-like sebuah produk ataupun membeli produk dari halaman ini. Produk yang sudah ter-like akan bertambah jumlah likenya sebanyak 1. Tentu saja User dapat membatalkan like dengan memencet tombol liked kembali. Jika User memutuskan untuk membeli produk, tombol buy akan membawa User ke halaman konfirmasi pembelian.
 
-![](mocks/register.jpg)
+![](mocks/screenshots/purchase_form.png)
+Pada halaman ini User akan mengisi detail dari pembelian yang ingin dilakukan. Setelah seluruh data terisi dan tombol confirm ditekan, Akan dikonfirmasi kembali. Jika User menyetujuinya, maka pembelian akan dilakukan dan User akan dibawa ke halaman Purchases.
 
-Pengguna dapat mendaftarkan diri sebagai user agar dapat menggunakan aplikasi ini. Hanya terdapat **satu** jenis user, yaitu user yang dapat membeli sekaligus menjual barang. Anda harus melakukan validasi bahwa email dan username yang sama tidak boleh digunakan untuk dua kali mendaftar. Setelah selesai register, otomatis masuk ke halaman Catalog dengan keadaan sudah login.
+![](mocks/screenshots/purchases.png)
+Pada halaman ini seluruh pembelian User akan ditampilkan berserta detailnya. Informasi produk pada halaman ini adalah informasi produk saat User membeli dan tidak akan berubah biarpun penjual mengubah detail produk.
 
-### Catalog
+![](mocks/screenshots/add_product.png)
+Pada halaman ini User dapat menambahkan produk untuk dijual. Form yang sama akan digunakan untuk melakukan penyuntingan detail produk.
 
-![](mocks/catalog.jpg)
+![](mocks/screenshots/your_product.png)
+Pada halaman ini User dapat melihat seluruh produk yang telah ia tambahkan. User dapat memenekan tombol EDIT atau DELETE. EDIT akan membawa User ke halaman Edit Product yang berisi seperti halaman add product namun telah diisikan detail saat ini. Delete akan menghapus produk. Tombol delete memberikan konfirmasi pada User sebelum penghapusan benar-benar dilakukan.
 
-Catalog merupakan halaman utama yang ditampilkan ketika user telah login. Catalog menampilkan list barang yang dijual oleh seluruh pengguna. Barang-barang tersebut ditampilkan terurut dimulai dari barang yang baru ditambahkan.
-
-Perlu diperhatikan, tulisan di atas tombol logout memiliki format "Hi, <<username>>!". Selanjutnya, terdapat menu bar yang menampilkan 5 menu utama seperti pada gambar. Menu yang sedang dibuka diberikan warna background yang berbeda sebagai penanda halaman apa yang sedang dibuka pengguna.
-
-Lalu, terdapat search bar. Pengguna dapat mencari barang dengan melakukan search ke `username (store)` atau `nama barang (product)` sesuai dengan pilihan pada radio button di bawah search bar.
-
-Pada list barang, pengguna dapat membeli (buy) dan menyukai (like) barang. Terdapat juga informasi jumlah like dan jumlah barang tersebut yang sudah laku (purchased).
-
-Ketika pengguna menekan tombol like, halaman tidak boleh refresh dan jumlah like akan berubah dan tersimpan ke basis data. **Fungsionalitas Like diimplementasi dengan menggunakan AJAX**. Selain itu, tulisan like akan berubah menjadi **Liked** dan **berubah warna menjadi merah**. Jumlah like akan berubah sesuai dengan banyaknya like pada basis data (jadi tidak asal nambah satu saja). Hal tersebut juga berlaku sebaliknya (unlike). Unlike dapat dilakukan dengan menekan tombol Liked.
-
-Ketika pengguna menekan tombol buy, pengguna akan menuju halaman confirmation purchase.
-
-### Confirmation Purchase
-
-![](mocks/confirmation_purchase.jpg)
-
-Pada halaman ini, pengguna harus mengisi identitas terkait pengiriman barang. Pada field selain credit card number, sudah terisi sesuai dengan data pengguna namun tetap dapat diubah. Untuk field quantity memiliki nilai default 1. Total harga otomatis dihitung dengan menggunakan javascript. Lakukan konfirmasi pembelian terlebih dahulu dengan javascript, seperti “Apakah data yang anda masukan benar?”. Setelah mengkonfirmasi, pengguna akan diarakahkan ke halaman *Purchases*.
-
-### Your Products
-
-![](mocks/your_products.jpg)
-
-Halaman ini berisikan list barang yang dijual oleh pengguna. Pada menu ini, pengguna dapat melakukan edit dan delete pada barang. Untuk delete, lakukan konfirmasi penghapusan terlebih dahulu dengan javascript.
-
-### Add Product
-
-![](mocks/add_product.jpg)
-
-Pengguna dapat menambahkan barang yang ingin dijual. Gunakan HTTP POST.  *Redirect* ke halaman *Your Products* setelah selesai menambahkan.
-
-### Edit Product
-
-![](mocks/edit_product.jpg)
-
-Pengguna dapat mengubah info barang yang sudah dibuat. Form yang digunakan memiliki tampilan yang sama dengan form untuk add product, namun field-field yang ada sudah terisi. Gunakan HTTP POST. Untuk memudahkan pengerjaan, gambar tidak dapat diganti. *Redirect* ke halaman *Your Products* setelah selesai merubah.
-
-### Sales
-
-![](mocks/sales.jpg)
-
-Halaman ini berisi histori penjualan barang yang dijual oleh pengguna. Apabila data barang tersebut diubah/dihapus, tidak mempengaruhi histori (tetap seperti pada data ketika dilakukan pembelian).
-
-### Purchases
-
-![](mocks/purchases.jpg)
-
-Halaman ini berisi histori pembelian barang oleh pengguna. Apabila data barang tersebut diubah/dihapus, tidak mempengaruhi histori (tetap seperti pada data ketika dilakukan pembelian).
+![](mocks/screenshots/sales.png)
+Pada halaman ini ditampilkan seluruh history penjualan User.
 
 ### Pembagian Tugas
-*Disarankan semua anggota kelompok mengerjakan tampilan dan fungsionalitasnya. Bukan hanya tampilan atau fungsionalitasnya saja*
 
 **Tampilan**
 1. Login : 13513028, 13514090
