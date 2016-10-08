@@ -31,11 +31,14 @@ class ShopController extends Base{
 		$this->view->product_name = "";
 		$this->view->product_description = "";
 		$this->view->errors = "";
+		$this->view->action_button_text = "ADD";
 		$this->view->form_action = "./shop.php?action=add_product&user_id=".$this->user->data->id;
 	}
 
 	function add_product_form(){
 		$this->product_form_init();
+		$this->view->action_button_text = "ADD";
+		$this->view->form_action = "./shop.php?action=add_product&user_id=".$this->user->data->id;
 		$this->view->header = $this->render_header("Please add your product here","add_product");
 		$this->view->render("shop_add_product.html");
 	}
@@ -122,6 +125,8 @@ class ShopController extends Base{
 		}
 		else {
 			$this->product_form_init();
+			$this->view->action_button_text = "ADD";
+			$this->view->form_action = "./shop.php?action=add_product&user_id=".$this->user->data->id;
 
 			$errors_str = "";
 			foreach($errors as $err){
@@ -159,6 +164,7 @@ class ShopController extends Base{
 		$this->view->product_description = $product->data->description;
 		$this->view->errors = "";
 		$this->view->form_action = "./shop.php?action=edit_product&user_id=".$this->user->data->id."&id=".$product_id;
+		$this->view->action_button_text = "UPDATE";
 		$this->view->render("shop_add_product.html");
 	}
 
