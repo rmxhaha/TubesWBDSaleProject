@@ -15,8 +15,8 @@
 		<input type="hidden" value="<?=$this->user->data->id?>" name="user_id" />
 		<table width=100%>
 			<tr>
-				<td><input type="text" placeholder="Search catalog ..." name="query" /></td>
-				<td width=100><input type="submit" value="GO" style="width:100px" /></td>
+				<td><input class=catalog-search type="text" placeholder="Search catalog ..." name="query" /></td>
+				<td width=100><input class=catalog-submit type="submit" value="GO" /></td>
 			</tr>
 		</table>
 		<table class=small-description>
