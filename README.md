@@ -4,8 +4,7 @@ Membuat Website Marketplace sederhana.
 
 ## Deskripsi Singkat
 
-Pada tugas besar ini, Anda diminta untuk membuat aplikasi *marketplace* **berbasis web** yang memungkinkan seorang pengguna membeli dan menjual barang. Untuk menggunakan aplikasi ini, pengguna harus login terlebih dahulu. Pengguna tersebut dapat membeli dan menjual barang dengan akun yang sama.
-
+Sebuah Website Marketplace sederhana bernama SaleProject. SaleProject memiliki fitur minimum sebuah website marketplace yaitu login, register, catalog, pembelian produk, manajemen produk, histori penjualan, dan histori pembelian. SaleProject dikembangkan menggunakan teknologi PHP, CSS, dan JavaScript.
 
 ## Anggota Tim
 1. Candra Ramsi (13514090)
