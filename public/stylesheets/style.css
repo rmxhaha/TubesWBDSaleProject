@@ -183,8 +183,16 @@ a:hover{
 .small-description {
   font-size : 0.8em;
 }
+
+.catalog-product-left img,
+.shop-product-left img,
+.transaction-left img {
+  border : 2px grey solid;
+}
+
 .catalog-product-left, .shop-product-left {
   width : 120px;
+  vertical-align: top;
 }
 
 .catalog-product-mid, .shop-product-mid {
@@ -198,6 +206,7 @@ a:hover{
 
 .transaction-left {
   width : 120px;
+  vertical-align: top;
 }
 .transaction-mid {
   width : 340px;

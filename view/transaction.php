@@ -1,5 +1,8 @@
 <div>
-  <?=$this->create_date?><br>
+  <br>
+  <div class="small-description">
+    <?=$this->create_date?>
+  </div>
   <hr>
   <table>
   <tr>
@@ -13,7 +16,7 @@
         @<?=$this->product_price?><br>
         <br>
         <div class=small-description>
-          <b>bought from <b><?=$this->seller_username?></b>
+          bought from <b><?=$this->seller_username?></b>
         </div>
     </td>
     <td class="transaction-right">
@@ -27,5 +30,4 @@
     </td>
   </tr>
   </table>
-  <br>
 </div>
