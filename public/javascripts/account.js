@@ -36,8 +36,6 @@ function validate_register(){
 
 	check( password == confirmpassword, "Password didn't match");
 
-	check( validatePositiveNumber(postcode) && postcode.length == 5, "Postcode must be 5 digits number");
-
 	show_error(errors);
 
 	return errors.length == 0;
