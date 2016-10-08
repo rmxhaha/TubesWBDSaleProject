@@ -19,8 +19,14 @@
         <div class="purchase_count"><?=$this->purchase_count?> Purchases </div>
       </div>
       <br>
-      <a class="orange" href="javascript:edit_product(<?=$this->product_id?>)">EDIT</div>
-      <a class="red" href="javascript:delete_product(<?=$this->product_id?>)">DELETE</div>
+      <div class="clearfix">
+        <div class="float-left">
+          <b><a class="orange" href="javascript:edit_product(<?=$this->product_id?>)">EDIT</a></b>
+        </div>
+        <div class="float-right">
+          <b><a class="red" href="javascript:delete_product(<?=$this->product_id?>)">DELETE</a></b>
+        </div>
+      </div>
     </td>
   </tr>
   </table>
