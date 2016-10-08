@@ -19,7 +19,7 @@ Sebuah Website Marketplace sederhana bernama SaleProject. SaleProject memiliki f
 
 ## Spesifikasi
 
-![](mocks/screenshots/register_form_yang_terisi.png);
+![](mocks/screenshots/register_form_yang_terisi.png)
 Pengalaman berbelanja dimulai dengan melakukan registrasi pada website.
 Isi data sesuai label. Validasi akan dilakukan untuk tiap input.
 Setelah terdaftar User akan diarahkan ke halaman Catalog.
