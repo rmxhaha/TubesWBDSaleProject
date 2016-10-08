@@ -15,7 +15,7 @@ function validateUsername(username){
 
 function validateName(username){
 	var nameRegex = /^[a-zA-Z \-]+$/;
-	return nameRegex.test(username);
+	return nameRegex.test(username) && username.length > 3;
 }
 function validatePositiveNumber(n){
 	var n = parseInt(n);

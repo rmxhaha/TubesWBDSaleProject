@@ -62,22 +62,33 @@ function validate_product(){
 function validate_purchase(){
   var q = document.getElementsByName("quantity")[0].value;
   var errors = [];
-  if( isNaN(parseInt(q) ) )
-    errors.push("Quantity must be a number");
-  else if( parseInt(q) < 1 )
-    errors.push("Quantity must be at least 1");
 
-  var ccn = document.getElementsByName("credit_card_number")[0].value;
+  function get(x){
+		return document.getElementsByName(x)[0].value;
+	}
+
+	function check(v, msg){
+		if(!v)
+			errors.push(msg);
+	}
+
+  check( validatePositiveNumber(get("quantity")), "Quantity must be a positive number" );
+
+  check( validatePositiveNumber(get("phone")) && get("phone").length >= 6 && get("phone").length <= 15, "Phone number is invalid" );
+
+  check( validateName(get("consignee")), "consignee must be filled" );
+
+  var postcode = get("postcode");
+  check( validatePositiveNumber(postcode) && postcode.length == 5, "Postcode must be 5 digits number");
+
+
   var digit12 = /^\d{12}$/;
-  if( !ccn.match(digit12) ){
-    errors.push("Credit Card must be 12 digits");
-  }
+  check( get("credit_card_number").match(digit12), "Credit Card must be 12 digits");
 
   var digit3 = /^\d{3}$/;
-  var ccv = document.getElementsByName("credit_card_verification")[0].value;
-  if( !ccv.match(digit3) ){
-    errors.push("Credit Card Verification Number must be 3 digits");
-  }
+  check( get("credit_card_verification").match(digit3), "Credit Card Verification number must be 3 digits");
+
+  check( get("fulladdress").length > 5 && get("fulladdress").length <= 200, "Address is too short or too long" );
 
   show_error(errors);
 
