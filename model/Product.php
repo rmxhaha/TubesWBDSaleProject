@@ -182,6 +182,7 @@ class Product extends Model{
     else if( $for == "catalog" ){
       $option["create_date"] = date_catalog_f( $this->data->create_date );
       $option["like_button_text"] = $this->data->like_button_text;
+      $option["like_button_class"] = $this->data->like_button_class;
 
       $view = new Template();
   		foreach($option as $key=>$value){

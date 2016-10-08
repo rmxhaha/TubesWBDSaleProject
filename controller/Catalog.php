@@ -24,9 +24,11 @@ class CatalogController extends Base{
 		$product_str = "";
 		foreach( $products as $product ){
 			if( $this->user->liked($product) ){
-				$product->data->like_button_text = "UNLIKE";
+				$product->data->like_button_class = "red";
+				$product->data->like_button_text = "LIKED";
 			}
 			else {
+				$product->data->like_button_class = "blue";
 				$product->data->like_button_text = "LIKE";
 			}
 

@@ -18,7 +18,7 @@
         <div><span class="purchase_count_<?=$this->product_id?>"><?=$this->purchase_count?></span> Purchases </div>
       </div>
       <br>
-      <a class="blue" href="javascript:void(0)" onclick="like(this,<?=$this->product_id?>)"><?=$this->like_button_text?></a>
+      <a class="<?=$this->like_button_class?>" href="javascript:void(0)" onclick="like(this,<?=$this->product_id?>)"><?=$this->like_button_text?></a>
       <a class="green" href="javascript:void(0)" onclick="buy(this,<?=$this->product_id?>)">BUY</a>
     </td>
   </tr>
