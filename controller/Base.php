@@ -26,7 +26,7 @@ class Base {
 		$view->header_purchases_link = "./purchases.php?user_id=$user->id";
 		$view->header_logout_link = "./logout.php";
 
-		$view->user = array( "name" => $user->fullname );
+		$view->user = $user;
 		$view->title = $title;
 
 		$view->__set("header_".$highlight."_class","header-highlight");
