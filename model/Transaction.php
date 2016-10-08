@@ -87,6 +87,7 @@ class Transaction extends Model {
         $row = $result->fetch_object();
         $this->data = $row;
         $this->seller = User::with_id($row->seller_id);
+        $this->buyer = User::with_id($row->buyer_id);
         $this->product = Product::with_row(array(
           "id" => $row->product_id,
           "name" => $row->product_name,
@@ -102,7 +103,7 @@ class Transaction extends Model {
     }
   }
 
-  function render(){
+  function render($for){
     $option = array(
       "create_date" => date_shop_f($this->data->purchasetime),
       "product_image" => $this->product->data->photo,
@@ -116,13 +117,20 @@ class Transaction extends Model {
       "postcode" => $this->data->postcode,
       "phone" => $this->data->phone
     );
+    if( $for == "purchase" ){
+      $seller_username = $this->seller->data->username;
+      $option["meta_subject"] = "bought from <b>$seller_username</b>";
+    }
+    else if( $for == "sales" ){
+      $buyer_username = $this->buyer->data->username;
+      $option["meta_subject"] = "bought by <b>$buyer_username</b>";
+    }
 
-
-      $view = new Template();
-  		foreach($option as $key=>$value){
-  			$view->__set($key,$value);
-  		}
-  		return $view->render_return("transaction.php");
+    $view = new Template();
+		foreach($option as $key=>$value){
+			$view->__set($key,$value);
+		}
+		return $view->render_return("transaction.php");
   }
 
 

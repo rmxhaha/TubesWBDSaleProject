@@ -16,7 +16,7 @@
         @<?=$this->product_price?><br>
         <br>
         <div class=small-description>
-          bought from <b><?=$this->seller_username?></b>
+          <?=$this->meta_subject?>
         </div>
     </td>
     <td class="transaction-right">

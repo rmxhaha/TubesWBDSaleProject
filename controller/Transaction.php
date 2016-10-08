@@ -53,7 +53,7 @@ class TransactionController extends Base{
 		$transaction_str = "";
 
 		foreach( $transactions as $t ){
-			$transaction_str .= $t->render();
+			$transaction_str .= $t->render("purchase");
 		}
 
 		$this->view->header = $this->render_header("Here are your purchases","purchases");
@@ -68,7 +68,7 @@ class TransactionController extends Base{
 		$transaction_str = "";
 
 		foreach( $transactions as $t ){
-			$transaction_str .= $t->render();
+			$transaction_str .= $t->render("sales");
 		}
 
 		$this->view->header = $this->render_header("Here are your sales","sales");
