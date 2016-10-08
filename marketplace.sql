@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 07, 2016 at 03:54 PM
+-- Generation Time: Oct 08, 2016 at 04:15 AM
 -- Server version: 5.5.52
 -- PHP Version: 5.3.10-1ubuntu3.24
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `photo` varchar(1024) NOT NULL,
   `seller_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
@@ -64,11 +64,15 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `credit_card_number` int(12) NOT NULL,
   `quantity` int(11) NOT NULL,
   `buyer_id` bigint(20) unsigned NOT NULL,
-  `product_id` bigint(20) unsigned NOT NULL,
   `seller_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(20) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `product_photo` varchar(1024) NOT NULL,
   PRIMARY KEY (`purchase_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
