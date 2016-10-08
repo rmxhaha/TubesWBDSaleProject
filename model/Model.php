@@ -18,14 +18,14 @@ function money_f($p){
 function date_catalog_f($raw){
   $phpdate = strtotime($raw);
   $mysqldate1 = date('l, d F Y',$phpdate);
-  $mysqldate2 = date('H i',$phpdate);
+  $mysqldate2 = date('H.i',$phpdate);
   return $mysqldate1.", at ".$mysqldate2;
 }
 
 function date_shop_f($raw){
   $phpdate = strtotime($raw);
   $mysqldate1 = date('l, d F Y',$phpdate);
-  $mysqldate2 = date('H i',$phpdate);
+  $mysqldate2 = date('H.i',$phpdate);
   return "<b>".$mysqldate1."</b><BR>at ".$mysqldate2;
 }
 
