@@ -42,12 +42,28 @@ class Transaction extends Model {
     $m->init_db();
     $db = $m->db;
     $buyer_id = $option["buyer"]->data->id;
+
+    // for snapshoting
     $product_id = $option["product"]->data->id;
+    $product_name = $option["product"]->data->name;
+    $product_price = $option["product"]->data->price;
+    $product_photo = get_image_store_location($option["product"]->data->photo);
+
+    copy($option["product"]->data->photo, $product_photo);
+
     $seller_id = $option["product"]->data->seller_id;
 
     $query = "
-      INSERT INTO purchase (`consignee`,`address`,`postcode`,`phone`,`credit_card_number`,`quantity`,`product_id`,`seller_id`,`buyer_id`)
-      VALUES ('$option[consignee]','$option[address]','$option[postcode]','$option[phone]','$option[credit_card_number]','$option[quantity]','$product_id','$seller_id','$buyer_id');
+      INSERT INTO purchase (
+        `consignee`,`address`,`postcode`,`phone`,`credit_card_number`,`quantity`,
+        `seller_id`,`buyer_id`,
+        `product_id`,`product_name`,`product_price`,`product_photo`
+        )
+      VALUES (
+        '$option[consignee]','$option[address]','$option[postcode]','$option[phone]','$option[credit_card_number]','$option[quantity]',
+        '$seller_id','$buyer_id',
+        '$product_id','$product_name','$product_price','$product_photo'
+      );
     ";
     $db->query($query);
 
@@ -71,7 +87,13 @@ class Transaction extends Model {
         $row = $result->fetch_object();
         $this->data = $row;
         $this->seller = User::with_id($row->seller_id);
-        $this->product = Product::with_id($row->product_id);
+        $this->product = Product::with_row(array(
+          "id" => $row->product_id,
+          "name" => $row->product_name,
+          "photo" => $row->product_photo,
+          "price" => $row->product_price,
+          "seller_id" => $row->seller_id
+        ));
       }
       else {
         throw new Exception("Unknown purchase id");

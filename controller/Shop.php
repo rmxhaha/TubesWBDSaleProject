@@ -43,27 +43,6 @@ class ShopController extends Base{
 		$this->view->render("shop_add_product.html");
 	}
 
-	static function generate_random_string($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-	}
-
-	function get_image_store_location($name){
-		$imageFileType = pathinfo(basename($_FILES[$name]["name"]),PATHINFO_EXTENSION);
-		$target_file = "";
-		do {
-			$target_file = IMAGE_UPLOAD_DIR . ShopController::generate_random_string().".$imageFileType";
-		}
-		while (file_exists($target_file));
-
-		return $target_file;
-	}
-
 	function get_form_image_errors($name){
 		$errors = array();
 		$imageFileType = pathinfo(basename($_FILES[$name]["name"]),PATHINFO_EXTENSION);
@@ -94,7 +73,7 @@ class ShopController extends Base{
 		}
 
 		if( !$required_image ){
-			if( isset($_FILES['product_photo']))
+			if( $_FILES['product_photo']['name'] != "" )
 				$errors = array_merge($errors, $this->get_form_image_errors("product_photo"));
 		}
 		else {
@@ -109,7 +88,7 @@ class ShopController extends Base{
 		$product_price = $_POST["product_price"];
 		$errors = $this->get_product_errors(true);
 		if( count($errors) == 0 ){
-			$target_file = $this->get_image_store_location("product_photo");
+			$target_file = get_image_store_location($_FILES["product_photo"]["name"]);
 			if (move_uploaded_file($_FILES["product_photo"]["tmp_name"], $target_file)) {
 
 				$res = Product::with_row(array(
@@ -170,7 +149,7 @@ class ShopController extends Base{
 
 	function edit_product(){
 		$product_id = $_GET['id'];
-		$errors = $this->get_product_errors(true);
+		$errors = $this->get_product_errors(false);
 
 		$product_name = $_POST["product_name"];
 		$product_description = $_POST["product_description"];
@@ -179,7 +158,7 @@ class ShopController extends Base{
 
 		if( count($errors) == 0 ){
 			if( $_FILES["product_photo"]["name"] != "" ){
-				$target_file = $this->get_image_store_location("product_photo");
+				$target_file = get_image_store_location($_FILES["product_photo"]["name"]);
 				if (move_uploaded_file($_FILES["product_photo"]["tmp_name"], $target_file)) {
 					$res = Product::with_row(array(
 						"id" => $product_id,
@@ -204,6 +183,8 @@ class ShopController extends Base{
 		}
 		else {
 			$this->product_form_init();
+			$this->view->form_action = "./shop.php?action=edit_product&user_id=".$this->user->data->id."&id=".$product_id;
+			$this->view->action_button_text = "UPDATE";
 
 			$errors_str = "";
 			foreach($errors as $err){
@@ -217,7 +198,7 @@ class ShopController extends Base{
 
 			$this->view->header = $this->render_header("Please update your product here","");
 			$this->view->errors = $errors_str;
-			$this->view->form_action = "./shop.php?action=edit_product&user_id=".$this->user->data->id."&id="+$product_id;
+			$this->view->form_action = "./shop.php?action=edit_product&user_id=".$this->user->data->id."&id=".$product_id;
 			$this->view->render("shop_add_product.html");
 
 		}

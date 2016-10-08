@@ -29,6 +29,28 @@ function date_shop_f($raw){
   return "<b>".$mysqldate1."</b><BR>at ".$mysqldate2;
 }
 
+
+function generate_random_string($length = 10) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
+}
+
+function get_image_store_location($fn){
+	$imageFileType = pathinfo(basename($fn),PATHINFO_EXTENSION);
+	$target_file = "";
+	do {
+		$target_file = IMAGE_UPLOAD_DIR . generate_random_string().".$imageFileType";
+	}
+	while (file_exists($target_file));
+
+	return $target_file;
+}
+
 class Model {
 	function __construct(){
 		$view = new Template();
@@ -44,6 +66,7 @@ class Model {
 			throw new Exception("Cannot connect to database");
 		}
 		$this->db = $mysqli;
+
 	}
 }
 ?>
