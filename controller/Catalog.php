@@ -9,9 +9,18 @@ class CatalogController extends Base{
 	}
 
 	function catalog(){
-		$products = "";
+		$products = array();
 		$this->view->header = $this->render_header("What are you going to buy today?","catalog");
-		$products = Product::get_all($this->db);
+
+		if( isset($_GET['query']) ){
+			if( $_GET['search_by'] == "store" )
+				$products = Product::get_by_store_name($_GET['query'], $this->db);
+			else if( $_GET['search_by'] == "product" )
+				$products = Product::get_by_name($_GET['query'], $this->db);
+		}
+		else {
+			$products = Product::get_all($this->db);
+		}
 		$product_str = "";
 		foreach( $products as $product ){
 			if( $this->user->liked($product) ){
@@ -25,6 +34,7 @@ class CatalogController extends Base{
 		}
 
 		$this->view->products = $product_str;
+		$this->view->user = $this->user;
 		$this->view->render("catalog.php");
 
 		$this->db->close();

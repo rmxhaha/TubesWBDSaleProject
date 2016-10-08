@@ -25,6 +25,39 @@ class Product extends Model{
     return $instance;
   }
 
+  static function get_by_name($query,$db){
+    $query = "
+      SELECT product.id FROM product
+      WHERE product.name LIKE '%$query%'
+      ORDER BY id DESC;
+    ";
+    $all = array();
+    if( $result = $db->query($query) ){
+      while($row = $result->fetch_array(MYSQLI_NUM)){
+        array_push($all, Product::with_id($row[0]));
+      }
+    }
+    return $all;
+  }
+
+
+  static function get_by_store_name($query,$db){
+    $query = "
+      SELECT product.id FROM product
+      JOIN user
+      ON product.seller_id = user.id
+      WHERE user.username LIKE '%$query%'
+      ORDER BY id DESC;
+    ";
+    $all = array();
+    if( $result = $db->query($query) ){
+      while($row = $result->fetch_array(MYSQLI_NUM)){
+        array_push($all, Product::with_id($row[0]));
+      }
+    }
+    return $all;
+  }
+
   static function get_all($db){
     $query = "SELECT id FROM product ORDER BY id DESC;";
     $all = array();
@@ -135,7 +168,7 @@ class Product extends Model{
 			"like_count" => $this->data->likes,
 			"purchase_count" => $this->data->purchases,
       "seller_name" => $this->seller->data->username
-		);
+		  );
 
     if( $for == "shop" ){
       $option["create_date"] = date_shop_f( $this->data->create_date );
