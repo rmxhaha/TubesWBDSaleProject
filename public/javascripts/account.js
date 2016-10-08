@@ -32,7 +32,7 @@ function validate_register(){
 
 	check( validateEmail(email), "Email is not valid" );
 
-	check( password.length < 6, "Password is too short" );
+	check( password.length >= 6, "Password is too short" );
 
 	check( password == confirmpassword, "Password didn't match");
 
