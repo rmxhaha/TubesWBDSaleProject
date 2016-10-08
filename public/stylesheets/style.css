@@ -29,6 +29,7 @@ input[type=password], input[type=text], input[type=file], select, textarea {
 }
 
 input[type=submit], button {
+    width: 20%;
     width: 25%;
     background-color: blue;
     color: white;
@@ -129,6 +130,52 @@ a:hover{
   text-align: right;
 }
 
+/*CSS For Header*/
+  .greeting{
+        text-align: right;
+    }
+    .greeting a{
+      color: red;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: white;
+        text-decoration: none;
+    }
+
+    li {
+        float: left;
+        width: 19.5%;
+        height: 40px;
+        border-right: 1px solid #000;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        text-orientation: center;
+        text-decoration: none;
+    }
+    li:first-of-type {
+        border-left: 1px solid #000;
+    }
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 13px 13px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: blue;
+        color: white;
+    }
+
+    .active {
+        background-color: white;
+    }
+
 .small-description {
   font-size : 0.8em;
 }
@@ -157,3 +204,4 @@ a:hover{
   width : 240px;
   vertical-align: top;
 }
+
