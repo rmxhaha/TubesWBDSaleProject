@@ -81,5 +81,10 @@ function validate_purchase(){
 
   show_error(errors);
 
-  return ( errors.length == 0 );
+  if( errors.length == 0 ){
+    var result = confirm("Apakah data yang anda masukan benar?");
+    return result;
+  }
+
+  return false;
 }
