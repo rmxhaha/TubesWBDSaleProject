@@ -26,7 +26,7 @@ class User extends Model {
       VALUES ('$data[fullname]','$data[username]','$data[email]','$data[password]','$data[fulladdress]','$data[postcode]','$data[phone]')
     ";
     if( $result = $db->query($query) ){
-      return User::with_row($data);
+      return User::with_id($db->insert_id);
     }
     return false;
   }
