@@ -196,12 +196,12 @@ a:hover{
 }
 
 .catalog-product-mid, .shop-product-mid {
-  width : 420px;
+  width : 480px;
   vertical-align: top;
 }
 
 .catalog-product-right, .shop-product-right, .transaction-right {
-  width : 160px;
+  width : 100px;
 }
 
 .transaction-left {
@@ -216,4 +216,11 @@ a:hover{
 .transaction-right {
   width : 240px;
   vertical-align: top;
+}
+
+.float-right {
+  float:right;
+}
+.float-left {
+  float: left;
 }

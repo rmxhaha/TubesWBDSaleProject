@@ -1,6 +1,9 @@
 <div class="product_<?=$this->product_id?>">
-  <b><?=$this->seller_name?></b><br>
-  added this on <?=$this->create_date?><br>
+  <br>
+  <div class="small-description">
+    <b><?=$this->seller_name?></b><br>
+    added this on <?=$this->create_date?><br>
+  </div>
   <hr>
   <table>
   <tr>
@@ -18,8 +21,14 @@
         <div><span class="purchase_count_<?=$this->product_id?>"><?=$this->purchase_count?></span> Purchases </div>
       </div>
       <br>
-      <a class="<?=$this->like_button_class?>" href="javascript:void(0)" onclick="like(this,<?=$this->product_id?>)"><?=$this->like_button_text?></a>
-      <a class="green" href="javascript:void(0)" onclick="buy(this,<?=$this->product_id?>)">BUY</a>
+      <div class=clearfix>
+        <div class="float-left">
+          <b><a class="<?=$this->like_button_class?>" href="javascript:void(0)" onclick="like(this,<?=$this->product_id?>)"><?=$this->like_button_text?></a></b>
+        </div>
+        <div class="float-right">
+          <b><a class="green" href="javascript:void(0)" onclick="buy(this,<?=$this->product_id?>)">BUY</a></b>
+        </div>
+      </div>
     </td>
   </tr>
   </table>

@@ -19,9 +19,9 @@
 				<td width=100><input type="submit" value="GO" style="width:100px" /></td>
 			</tr>
 		</table>
-		<table>
+		<table class=small-description>
 			<tr>
-				<td valign=top>by</td>
+				<td valign=top width=30>by</td>
 				<td>
 					<input type="radio" checked="checked" name="search_by" value="product" /> product<br>
 					<input type="radio" name="search_by" value="store" /> store
