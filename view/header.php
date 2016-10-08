@@ -1,6 +1,6 @@
 <div class="header-container">
 	<h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
-    <div class="greeting">
+    <div class="greeting small-description">
 		Hi, <?=$this->user["name"]?><br>
 		<a class="red" href="<?=$this->header_logout_link?>">logout</a>
 	</div>
