@@ -1,5 +1,8 @@
 <div class="product_<?=$this->product_id?>">
-  <?=$this->create_date?><br>
+  <br>
+  <div class=small-description>
+    <?=$this->create_date?>
+  </div>
   <hr>
   <table>
   <tr>
