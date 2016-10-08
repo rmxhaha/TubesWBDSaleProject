@@ -1,7 +1,7 @@
 <div class="header-container">
 	<h1 class="FirstWord">Sale<span class="SecondWord">Project</span></h1>
     <div class="greeting small-description">
-		Hi, <?=$this->user->username?><br>
+		Hi, <?=$this->user->username?>!<br>
 		<a class="red" href="<?=$this->header_logout_link?>">logout</a>
 	</div>
 	<ul class="table-header-option">
